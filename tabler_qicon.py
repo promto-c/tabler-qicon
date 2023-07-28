@@ -33,12 +33,13 @@ class TablerQIcon:
 
     def __init__(self, color: QtGui.QColor=_default_color, size: int=24, view_box_size: int=24, stroke_width: int=2, opacity: float=1.0):
         """Initialize the widget and load the icons from the tabler-icons directory.
-            Args:
-                color (QtGui.QColor): color of the icon
-                size (int): size of the icon 
-                view_box_size (int): size of the view box of the icon
-                stroke_width (int): width of the stroke of the icon
-                opacity (float): opacity of the icon
+
+        Args:
+            color (QtGui.QColor): color of the icon
+            size (int): size of the icon 
+            view_box_size (int): size of the view box of the icon
+            stroke_width (int): width of the stroke of the icon
+            opacity (float): opacity of the icon
         """
         # Save the properties
         self._color = color
@@ -51,12 +52,12 @@ class TablerQIcon:
         self._icon_name_to_path_dict = self.get_icon_name_to_path_dict()
 
     def __getattr__(self, name: str) -> QtGui.QIcon:
-
         """Allows access to the icons as attributes by returning a QIcon object for a given icon name.
-            Args:
-                name (str): The name of the icon to retrieve.
-            Returns:
-                QIcon : QIcon object for the given icon name
+
+        Args:
+            name (str): The name of the icon to retrieve.
+        Returns:
+            QtGui.QIcon : QIcon object for the given icon name
         """
         # Get the path of the icon from the dictionary using the name as the key
         svg_icon_path = self._icon_name_to_path_dict.get(name)
@@ -123,30 +124,39 @@ class TablerQIcon:
         # Return the icon
         return icon
     
-    @classmethod
-    def get_icon_name_to_path_dict(cls) -> Dict[str, str]:
-        """Returns a dictionary containing the icon name as key and the icon path as value.
+    @staticmethod
+    def get_icon_name_to_path_dict() -> Dict[str, str]:
+        """Scans the predefined icon directory and constructs a dictionary mapping sanitized SVG file names to their respective file paths.
         
-            Returns:
-                dict: containing the icon name as key and the icon path as value
+        Returns:
+            Dict[str, str]: containing the icon name as key and the icon path as value
+
+        Raises:
+            FileNotFoundError: If the predefined directory does not exist.
         """
+        # Ensure the specified directory exists before proceeding
+        if not os.path.isdir(TABLER_ICONS_SVG_DIRECTORY):
+            # If the directory does not exist, raise a FileNotFoundError with a descriptive message
+            raise FileNotFoundError(f"Directory {TABLER_ICONS_SVG_DIRECTORY} does not exist")
+        
         # Create an empty dictionary to store the icon name and path
         icon_name_to_path_dict = dict()
-        # Get a list of all SVG files in the TABLER_ICONS_SVG_DIRECTORY
-        svg_file = [ file for file in os.listdir(TABLER_ICONS_SVG_DIRECTORY) if file.endswith('.svg') ]
-        
-        for file in svg_file:
-            # Use regex to replace invalid characters with an underscore
-            icon_name = re.sub(r'[^a-zA-Z0-9_]', '_', file.split('.')[0])
 
+        # Get a list of all SVG files in the TABLER_ICONS_SVG_DIRECTORY
+        svg_files = [ file for file in os.listdir(TABLER_ICONS_SVG_DIRECTORY) if file.endswith('.svg') ]
+
+        # Compile the regex pattern once to avoid recompilation in each loop iteration
+        pattern = re.compile(r'[^a-zA-Z0-9_]')
+        
+        for svg_file in svg_files:
+            # Use regex to replace invalid characters with an underscore
+            icon_name = pattern.sub('_', svg_file.split('.')[0])
             # Prepend an underscore to the icon name if it starts with a number
             if icon_name[0].isdigit():
                 icon_name = "_" + icon_name
                 
-            # Join the directory path and the file name to get the full path of the icon file
-            icon_path = os.path.join(TABLER_ICONS_SVG_DIRECTORY, file)
             # Add the icon name and path to the icon_name_to_path_dict
-            icon_name_to_path_dict[icon_name] = icon_path
+            icon_name_to_path_dict[icon_name] = os.path.join(TABLER_ICONS_SVG_DIRECTORY, svg_file)
 
         # return the dictionary containing the icon name and path
         return icon_name_to_path_dict
