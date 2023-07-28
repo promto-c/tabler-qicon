@@ -43,3 +43,28 @@ else
     echo "Copying icons.."
     cp -rf $TEMP_DIR/icons/ $TARGET_DIR/
 fi
+
+generate_pyi_file() {
+    # Generate the .pyi file
+    {
+        echo "from PyQt5.QtGui import QIcon"
+        echo ""
+        echo "class TablerQIcon:"
+        for file in $TARGET_DIR/icons/*.svg; do
+            icon_name=$(basename "$file" .svg)
+
+            # Replace all non-alphanumeric characters with an underscore
+            icon_name=$(echo "$icon_name" | sed 's/[^a-zA-Z0-9_]/_/g')
+
+            # If the icon name starts with a digit, prepend an underscore
+            if [[ $icon_name =~ ^[0-9] ]]; then
+                icon_name="_$icon_name"
+            fi
+
+            echo "    def $icon_name(self) -> QIcon: ..."
+        done
+    } > $TARGET_DIR/tabler_qicon.pyi
+}
+
+# Call the function to generate the .pyi file
+generate_pyi_file
