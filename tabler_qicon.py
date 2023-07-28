@@ -1,5 +1,6 @@
 # Standard library imports
 # ------------------------
+import logging
 import os
 import re
 import sys
@@ -8,22 +9,55 @@ from xml.etree import ElementTree
 
 # Related third party imports
 # ---------------------------
-from PyQt5 import QtGui, QtCore, QtWidgets
+# Declare the variables for the Qt libraries as None initially
+QtCore = QtGui = QtWidgets = QtSvg = None
 
-# Check if PyQt5.QtSvg module is available
-try:
-    from PyQt5 import QtSvg
-except ImportError:
-    IS_QTSVG_SUPPORTED = False
+def use(lib_name: str = None):
+    """Use the preferred Qt library specified by the user.
+    
+    This function tries to import QtCore, QtGui, QtWidgets and QtSvg from the specified library.
+
+    Args:
+        lib_name (str, optional): Preferred Qt library. Choices are ["PyQt6", "PySide6", "PyQt5", "PySide2"].
+            If not provided, the function will try to load the libraries in the above order.
+    """
+    global QtCore, QtGui, QtWidgets, QtSvg
+
+    # Try to import the modules from the specified Qt library
+    QtCore = __import__(f'{lib_name}.QtCore', fromlist=[''])
+    QtGui = __import__(f'{lib_name}.QtGui', fromlist=[''])
+    QtWidgets = __import__(f'{lib_name}.QtWidgets', fromlist=[''])
+    
+    # Some libraries may not support QtSvg, handle it separately
+    try:
+        QtSvg = __import__(f'{lib_name}.QtSvg', fromlist=[''])
+    except ModuleNotFoundError:
+        # If QtSvg is not available, log a warning and set QtSvg as None
+        QtSvg = None
+        logging.warning(f"The QtSvg module could not be imported from {lib_name}. SVG icon functionality may not be available.")
+
+# Loop through the list of Qt libraries in order of preference
+for lib_name in ['PyQt6', 'PySide6', 'PyQt5', 'PySide2']:
+    try:
+        # Attempt to use the current library
+        use(lib_name)
+    except ModuleNotFoundError:
+        # If the current library is not found, continue to the next one
+        continue
+    else:
+        # If the current library is imported successfully, log this information and break the loop
+        logging.info(f'Successfully imported {lib_name}')
+        break
 else:
-    IS_QTSVG_SUPPORTED = True
+    # If none of the libraries could be imported, raise an ImportError
+    raise ImportError('No Qt libraries could be imported. Please ensure that at least one of PyQt6, PyQt5, PySide6, or PySide2 is installed.')
 
 # Constants Definition
-# ----------------
+# --------------------
 TABLER_ICONS_SVG_DIRECTORY = os.path.join(os.path.dirname(__file__), 'icons')
 
 # Classes Definition
-# ----------------
+# ------------------
 class TablerQIcon:
     """A class that loads icons from the tabler-icons directory and makes them available as attributes.
 
@@ -40,7 +74,7 @@ class TablerQIcon:
     # Create an instance of QPalette
     _palette = QtGui.QPalette()
     # Get the default color (text color) of the palette and store it in the _default_color attribute
-    _default_color = _palette.color(QtGui.QPalette.Text)
+    _default_color = _palette.color(QtGui.QPalette.ColorRole.Text)
 
     # Initialization and Setup
     # ------------------------
@@ -116,7 +150,7 @@ class TablerQIcon:
             # Return an empty QIcon object
             return QtGui.QIcon()
 
-        if IS_QTSVG_SUPPORTED:
+        if QtSvg:
             # Load the original SVG file
             with open(svg_icon_path, 'r') as svg_file:
                 svg_str = svg_file.read()
@@ -136,7 +170,7 @@ class TablerQIcon:
             pixmap = QtGui.QPixmap(self._size, self._size)
 
             # Fill the pixmap with transparent color
-            pixmap.fill(QtCore.Qt.transparent)
+            pixmap.fill(QtCore.Qt.GlobalColor.transparent)
             
             # Create a QPainter object to draw on the QPixmap
             painter = QtGui.QPainter(pixmap)
@@ -149,7 +183,7 @@ class TablerQIcon:
             pixmap = QtGui.QPixmap(svg_icon_path)
 
             # Set the size of the pixmap
-            pixmap = pixmap.scaled(self._size, self._size, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
+            pixmap = pixmap.scaled(self._size, self._size, QtCore.Qt.AspectRatioMode.KeepAspectRatio, QtCore.Qt.TransformationMode.SmoothTransformation)
 
             # Create a QPainter object to draw on the QPixmap
             painter = QtGui.QPainter(pixmap)
@@ -157,7 +191,7 @@ class TablerQIcon:
         # Set the opacity of the icon
         painter.setOpacity(self._opacity)
         # Set the composition mode to "SourceIn" to composite the color on the icon
-        painter.setCompositionMode(QtGui.QPainter.CompositionMode_SourceIn)
+        painter.setCompositionMode(QtGui.QPainter.CompositionMode.CompositionMode_SourceIn)
         
         # Fill the pixmap with the specified color
         painter.fillRect(pixmap.rect(), self._color)
