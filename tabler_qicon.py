@@ -1,8 +1,13 @@
-import os, re, sys
+# Standard library imports
+# ------------------------
+import os
+import re
+import sys
 from typing import Dict, List, Optional
-
 from xml.etree import ElementTree
 
+# Related third party imports
+# ---------------------------
 from PyQt5 import QtGui, QtCore, QtWidgets
 
 # Check if PyQt5.QtSvg module is available
@@ -13,8 +18,12 @@ except ImportError:
 else:
     IS_QTSVG_SUPPORTED = True
 
+# Constants Definition
+# ----------------
 TABLER_ICONS_SVG_DIRECTORY = os.path.join(os.path.dirname(__file__), 'icons')
 
+# Classes Definition
+# ----------------
 class TablerQIcon:
     """A class that loads icons from the tabler-icons directory and makes them available as attributes.
 
@@ -26,11 +35,15 @@ class TablerQIcon:
         _stroke_width (int): The width of the icon's stroke.
         _opacity (float): The opacity of the icon.
     """
+    # Class Variables
+    # ---------------
     # Create an instance of QPalette
     _palette = QtGui.QPalette()
     # Get the default color (text color) of the palette and store it in the _default_color attribute
     _default_color = _palette.color(QtGui.QPalette.Text)
 
+    # Initialization and Setup
+    # ------------------------
     def __init__(self, color: QtGui.QColor=_default_color, size: int=24, view_box_size: int=24, stroke_width: int=2, opacity: float=1.0):
         """Initialize the widget and load the icons from the tabler-icons directory.
 
@@ -51,8 +64,42 @@ class TablerQIcon:
         # Get the icon name to path dictionary  and store it in the _icon_name_to_path_dict attribute
         self._icon_name_to_path_dict = self.get_icon_name_to_path_dict()
 
+    # Special Methods
+    # ---------------
+    def __call__(self, name: str) -> QtGui.QIcon:
+        """Allows access to the icons using function call style.
+        
+        Args:
+            name (str): The name of the icon to retrieve.
+        Returns:
+            QtGui.QIcon : QIcon object for the given icon name
+        """
+        return self.get_qicon(name)
+
     def __getattr__(self, name: str) -> QtGui.QIcon:
         """Allows access to the icons as attributes by returning a QIcon object for a given icon name.
+
+        Args:
+            name (str): The name of the icon to retrieve.
+        Returns:
+            QtGui.QIcon : QIcon object for the given icon name
+        """
+        return self.get_qicon(name)
+
+    def __getitem__(self, name: str) -> QtGui.QIcon:
+        """Allows access to the icons as index.
+        
+        Args:
+            name (str): The name of the icon to retrieve.
+        Returns:
+            QtGui.QIcon : QIcon object for the given icon name
+        """
+        return self.get_qicon(name)
+
+    # Extended Methods
+    # ----------------
+    def get_qicon(self, name: str) -> QtGui.QIcon:
+        """Get the icon as a QIcon object using a method.
 
         Args:
             name (str): The name of the icon to retrieve.
@@ -83,7 +130,7 @@ class TablerQIcon:
             # Create a renderer object to render the SVG file
             renderer = QtSvg.QSvgRenderer(svg_bytes)
             # Set the view box size
-            renderer.setViewBox( QtCore.QRectF(0, 0, self._view_box_size, self._view_box_size) )
+            renderer.setViewBox(QtCore.QRectF(0, 0, self._view_box_size, self._view_box_size))
 
             # Create a QPixmap object to hold the rendered image
             pixmap = QtGui.QPixmap(self._size, self._size)
@@ -163,11 +210,17 @@ class TablerQIcon:
     
     @classmethod
     def get_icon_names(cls) -> List[str]:
-        """Returns a list of all the available icon names.
+        """Provides a list of all available icon names.
+        
+        Returns:
+            List[str]: A list containing all the available icon names.
         """
+        # Retrieve the dictionary mapping from icon names to their paths
         icon_name_to_path_dict = cls.get_icon_name_to_path_dict()
+
+        # Return the list of icon names
         return list(icon_name_to_path_dict.keys())
-    
+
     @classmethod
     def get_icon_path(cls, name: str = None) -> Optional[str]:
         """Provides the path of a specific icon or the icons directory.
@@ -189,6 +242,8 @@ class TablerQIcon:
         # Return the path corresponding to the provided icon name
         return icon_name_to_path_dict.get(name)
 
+# Main Execution
+# --------------
 if __name__ == '__main__':
     # Create the application
     app = QtWidgets.QApplication(sys.argv)
