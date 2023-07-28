@@ -1,5 +1,5 @@
 import os, re, sys
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from xml.etree import ElementTree
 
@@ -162,17 +162,31 @@ class TablerQIcon:
         return icon_name_to_path_dict
     
     @classmethod
-    def get_icon_name_list(cls) -> List[str]:
+    def get_icon_names(cls) -> List[str]:
         """Returns a list of all the available icon names.
         """
         icon_name_to_path_dict = cls.get_icon_name_to_path_dict()
         return list(icon_name_to_path_dict.keys())
     
     @classmethod
-    def get_icon_path(cls, name: str) -> str:
-        """Returns a icon path from input name.
+    def get_icon_path(cls, name: str = None) -> Optional[str]:
+        """Provides the path of a specific icon or the icons directory.
+
+        Args:
+            name (str, optional): The name of the icon. If not provided, the method will return the icons directory.
+
+        Returns:
+            Optional[str]: Path of the icon if the name is provided and exists in the dictionary, else the icons directory.
+                If the name is provided but doesn't match any in the dictionary, returns None.
         """
+        # If no icon name is provided, return the directory of all icons
+        if not name:
+            return TABLER_ICONS_SVG_DIRECTORY
+
+        # Retrieve the dictionary mapping from icon names to their paths
         icon_name_to_path_dict = cls.get_icon_name_to_path_dict()
+
+        # Return the path corresponding to the provided icon name
         return icon_name_to_path_dict.get(name)
 
 if __name__ == '__main__':
