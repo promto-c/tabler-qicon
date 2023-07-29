@@ -70,9 +70,11 @@ generate_pyi_file() {
   {
     # Python keywords
     python_keywords="False None True and as assert async await break class continue def del elif else except finally for from global if import in is lambda nonlocal not or pass raise return try while with yield"
+    echo "from .tabler_qicon import TablerQIcon"
+    echo ""
     echo "class QIcon: ..."
     echo ""
-    echo "class TablerQIcon:"
+    echo "class ExtendedTablerQIcon(TablerQIcon):"
     for file in $TARGET_DIR/icons/*.svg; do
       icon_name=$(basename "$file" .svg)
       # Replace all non-alphanumeric characters with an underscore
@@ -83,7 +85,7 @@ generate_pyi_file() {
       fi
       echo "    def $icon_name(self) -> QIcon: ..."
     done
-  } > $TARGET_DIR/tabler_qicon.pyi
+  } > $TARGET_DIR/extended_tabler_qicon.pyi
 }
 
 # Generate the .pyi file
