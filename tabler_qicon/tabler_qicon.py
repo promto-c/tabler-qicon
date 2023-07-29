@@ -27,7 +27,7 @@ def use(lib_name: str = None):
     QtCore = __import__(f'{lib_name}.QtCore', fromlist=[''])
     QtGui = __import__(f'{lib_name}.QtGui', fromlist=[''])
     QtWidgets = __import__(f'{lib_name}.QtWidgets', fromlist=[''])
-    
+
     # Some libraries may not support QtSvg, handle it separately
     try:
         QtSvg = __import__(f'{lib_name}.QtSvg', fromlist=[''])
@@ -69,16 +69,17 @@ class TablerQIcon:
         _stroke_width (int): The width of the icon's stroke.
         _opacity (float): The opacity of the icon.
     """
-    # Class Variables
-    # ---------------
-    # Create an instance of QPalette
-    _palette = QtGui.QPalette()
-    # Get the default color (text color) of the palette and store it in the _default_color attribute
-    _default_color = _palette.color(QtGui.QPalette.ColorRole.Text)
+    # # Class Variables
+    # # ---------------
+    # # Create an instance of QPalette
+    # _palette = QtGui.QPalette()
+    # # Get the default color (text color) of the palette and store it in the _default_color attribute
+    # _default_color = _palette.color(QtGui.QPalette.ColorRole.Text)
+    # print(_default_color)
 
     # Initialization and Setup
     # ------------------------
-    def __init__(self, color: QtGui.QColor=_default_color, size: int=24, view_box_size: int=24, stroke_width: int=2, opacity: float=1.0):
+    def __init__(self, color: QtGui.QColor = None, size: int = 24, view_box_size: int = 24, stroke_width: int = 2, opacity: float = 1.0):
         """Initialize the widget and load the icons from the tabler-icons directory.
 
         Args:
@@ -89,7 +90,7 @@ class TablerQIcon:
             opacity (float): opacity of the icon
         """
         # Save the properties
-        self._color = color
+        self._color = QtGui.QPalette().color(QtGui.QPalette.ColorRole.Text) if not color else color
         self._size = size
         self._view_box_size = view_box_size
         self._stroke_width = stroke_width
@@ -192,10 +193,8 @@ class TablerQIcon:
         painter.setOpacity(self._opacity)
         # Set the composition mode to "SourceIn" to composite the color on the icon
         painter.setCompositionMode(QtGui.QPainter.CompositionMode.CompositionMode_SourceIn)
-        
         # Fill the pixmap with the specified color
         painter.fillRect(pixmap.rect(), self._color)
-        
         # End the painter
         painter.end()
 
@@ -279,6 +278,9 @@ class TablerQIcon:
 # Main Execution
 # --------------
 if __name__ == '__main__':
+    from PyQt5 import QtWidgets
+    use('PyQt5')
+
     # Create the application
     app = QtWidgets.QApplication(sys.argv)
 

@@ -1,11 +1,27 @@
-"""Unit tests for the TablerQIcon class."""
-
+# Standard library imports
+# ------------------------
 import os
 import unittest
-from PyQt5 import QtGui
 
+# Related third party imports
+# ---------------------------
+from PyQt5 import QtGui, QtWidgets
+
+# Local imports
+# -------------
+import tabler_qicon
+tabler_qicon.use('PyQt5')
+from tabler_qicon import TablerQIcon
+
+# Classes Definition
+# ------------------
 class TestTablerQIcon(unittest.TestCase):
   """Test case for the TablerQIcon class."""
+
+  @classmethod
+  def setUpClass(cls):
+      """Set up method to be run once for the entire class."""
+      cls.app = QtWidgets.QApplication([])
 
   def setUp(self):
     """Set up method to be run before each test."""
@@ -33,7 +49,7 @@ class TestTablerQIcon(unittest.TestCase):
   def test_icon_retrieval(self):
     """Test the icon retrieval from TablerQIcon."""
     # Put the name of one icon from your directory here.
-    icon = self.tabler_qicon['users']
+    icon = self.tabler_qicon.users
     # Check if the returned object is QIcon.
     self.assertTrue(isinstance(icon, QtGui.QIcon))
 
