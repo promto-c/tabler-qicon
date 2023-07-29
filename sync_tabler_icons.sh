@@ -40,8 +40,9 @@ if command -v rsync &> /dev/null; then
     rsync -r --info=progress2 $TEMP_DIR/icons/ $TARGET_DIR/
 else
     # Use cp to copy the "icons" directory to the target location
-    echo "Copying icons.."
+    echo -n "Copying icons.."
     cp -rf $TEMP_DIR/icons/ $TARGET_DIR/
+    echo -e "\rIcons copied successfully."
 fi
 
 generate_pyi_file() {
@@ -70,4 +71,6 @@ generate_pyi_file() {
 }
 
 # Call the function to generate the .pyi file
+echo -n "Generating tabler_qicon.pyi file..."
 generate_pyi_file
+echo -e "\rtabler_qicon.pyi file generation completed."
