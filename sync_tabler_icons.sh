@@ -1,5 +1,6 @@
 #!/bin/bash
-set -e  # Exit the script if any command fails
+# Exit the script if any command fails or any referenced variable is unset
+set -eu
 
 # Define the URL of the repository to be cloned
 REPO_URL="https://github.com/tabler/tabler-icons.git"
@@ -18,7 +19,7 @@ TARGET_DIR="$(dirname "${BASH_SOURCE[0]}")/tabler_qicon/"
 sync_time=$(date -u +'%Y-%m-%d %H:%M:%S UTC')
 
 # Get the number of icons before sync
-num_icons_before=$(ls $TARGET_DIR/icons | wc -l)
+num_icons_before=$(ls $TARGET_DIR/icons/*.svg 2> /dev/null | wc -l)
 
 # Initialize a new git repository in the temporary directory
 git init $TEMP_DIR
@@ -52,7 +53,7 @@ else
 fi
 
 # Get the number of icons after sync
-num_icons_after=$(ls $TARGET_DIR/icons | wc -l)
+num_icons_after=$(ls $TARGET_DIR/icons/*.svg 2> /dev/null | wc -l)
 
 # Get the latest commit after sync
 latest_sync_commit=$(git -C $TEMP_DIR log --oneline -1)
