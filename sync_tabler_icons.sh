@@ -14,6 +14,12 @@ trap "rm -rf $TEMP_DIR" EXIT
 # This directory is relative to the location of this script
 TARGET_DIR="$(dirname "${BASH_SOURCE[0]}")/tabler_qicon/"
 
+# Get the current sync time
+sync_time=$(date -u +'%Y-%m-%d %H:%M:%S UTC')
+
+# Get the number of icons before sync
+num_icons_before=$(ls $TARGET_DIR/icons | wc -l)
+
 # Initialize a new git repository in the temporary directory
 git init $TEMP_DIR
 
@@ -44,6 +50,20 @@ else
     cp -rf $TEMP_DIR/icons/ $TARGET_DIR/
     echo -e "\rIcons copied successfully."
 fi
+
+# Get the number of icons after sync
+num_icons_after=$(ls $TARGET_DIR/icons | wc -l)
+
+# Get the latest commit after sync
+latest_sync_commit=$(git -C $TEMP_DIR log --oneline -1)
+
+# Write the log
+echo "repository: $REPO_URL" > $TARGET_DIR/icons/update.log
+echo "branch: master" >> $TARGET_DIR/icons/update.log
+echo "synced: $sync_time" >> $TARGET_DIR/icons/update.log
+echo "icons_before: $num_icons_before" >> $TARGET_DIR/icons/update.log
+echo "commit: $latest_sync_commit" >> $TARGET_DIR/icons/update.log
+echo "icons_after: $num_icons_after" >> $TARGET_DIR/icons/update.log
 
 generate_pyi_file() {
     # Generate the .pyi file
