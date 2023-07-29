@@ -69,13 +69,6 @@ class TablerQIcon:
         _stroke_width (int): The width of the icon's stroke.
         _opacity (float): The opacity of the icon.
     """
-    # # Class Variables
-    # # ---------------
-    # # Create an instance of QPalette
-    # _palette = QtGui.QPalette()
-    # # Get the default color (text color) of the palette and store it in the _default_color attribute
-    # _default_color = _palette.color(QtGui.QPalette.ColorRole.Text)
-    # print(_default_color)
 
     # Initialization and Setup
     # ------------------------
