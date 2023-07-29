@@ -1,5 +1,6 @@
 # Standard library imports
 # ------------------------
+import keyword
 import logging
 import os
 import re
@@ -219,15 +220,15 @@ class TablerQIcon:
         svg_files = [ file for file in os.listdir(TABLER_ICONS_SVG_DIRECTORY) if file.endswith('.svg') ]
 
         # Compile the regex pattern once to avoid recompilation in each loop iteration
-        pattern = re.compile(r'[^a-zA-Z0-9_]')
+        pattern = re.compile('[\W_]+')
         
         for svg_file in svg_files:
             # Use regex to replace invalid characters with an underscore
             icon_name = pattern.sub('_', svg_file.split('.')[0])
-            # Prepend an underscore to the icon name if it starts with a number
-            if icon_name[0].isdigit():
+            # Check if the icon name is a Python keyword or starts with a number
+            if keyword.iskeyword(icon_name) or icon_name[0].isdigit():
                 icon_name = "_" + icon_name
-                
+                            
             # Add the icon name and path to the icon_name_to_path_dict
             icon_name_to_path_dict[icon_name] = os.path.join(TABLER_ICONS_SVG_DIRECTORY, svg_file)
 

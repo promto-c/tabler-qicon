@@ -12,7 +12,7 @@ trap "rm -rf $TEMP_DIR" EXIT
 
 # Define the target directory where the icons should be stored
 # This directory is relative to the location of this script
-TARGET_DIR="$(dirname "${BASH_SOURCE[0]}")/"
+TARGET_DIR="$(dirname "${BASH_SOURCE[0]}")/tabler_qicon/"
 
 # Initialize a new git repository in the temporary directory
 git init $TEMP_DIR
@@ -47,17 +47,20 @@ fi
 generate_pyi_file() {
     # Generate the .pyi file
     {
-        echo "from PyQt5.QtGui import QIcon"
+        # Define a string with Python keywords, separated by spaces
+        python_keywords="False None True and as assert async await break class continue def del elif else except finally for from global if import in is lambda nonlocal not or pass raise return try while with yield"
+
+        echo "class QIcon: ..."
         echo ""
         echo "class TablerQIcon:"
         for file in $TARGET_DIR/icons/*.svg; do
             icon_name=$(basename "$file" .svg)
 
             # Replace all non-alphanumeric characters with an underscore
-            icon_name=$(echo "$icon_name" | sed 's/[^a-zA-Z0-9_]/_/g')
+            icon_name=$(echo "$icon_name" | sed 's/\W/_/g')
 
-            # If the icon name starts with a digit, prepend an underscore
-            if [[ $icon_name =~ ^[0-9] ]]; then
+            # If the icon name starts with a digit or is a Python keyword, prepend an underscore
+            if [[ $icon_name =~ ^[0-9] ]] || [[ " ${python_keywords[@]} " =~ " ${icon_name} " ]]; then
                 icon_name="_$icon_name"
             fi
 
