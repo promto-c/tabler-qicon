@@ -110,7 +110,7 @@ generate_pyi_file() {
     if [[ $icon_name =~ ^[0-9] ]] || [[ " ${python_keywords[@]} " =~ " ${icon_name} " ]]; then
       icon_name="_$icon_name"
     fi
-    echo "    def $icon_name(self) -> QIcon: ..."
+    echo "    $icon_name: QIcon"
   done
 } > $TARGET_DIR/extended_tabler_qicon.pyi
 
