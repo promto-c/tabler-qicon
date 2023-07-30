@@ -13,7 +13,7 @@ from xml.etree import ElementTree
 # Declare the variables for the Qt libraries as None initially
 QtCore = QtGui = QtWidgets = QtSvg = None
 
-def use(lib_name: str = None):
+def set_backend(lib_name: str = None):
     """Use the preferred Qt library specified by the user.
     
     This function tries to import QtCore, QtGui, QtWidgets and QtSvg from the specified library.
@@ -41,7 +41,7 @@ def use(lib_name: str = None):
 for lib_name in ['PyQt6', 'PySide6', 'PyQt5', 'PySide2']:
     try:
         # Attempt to use the current library
-        use(lib_name)
+        set_backend(lib_name)
     except ModuleNotFoundError:
         # If the current library is not found, continue to the next one
         continue
@@ -71,6 +71,11 @@ class TablerQIcon:
         _opacity (float): The opacity of the icon.
     """
 
+    # Class Variables Definition
+    # --------------------------
+    # Create a shared class variable as an empty dictionary to store the icon name and path
+    _icon_name_to_path_dict: Dict[str, str] = dict()
+
     # Initialization and Setup
     # ------------------------
     def __init__(self, color: QtGui.QColor = None, size: int = 24, view_box_size: int = 24, stroke_width: int = 2, opacity: float = 1.0):
@@ -90,8 +95,13 @@ class TablerQIcon:
         self._stroke_width = stroke_width
         self._opacity = opacity
 
-        # Get the icon name to path dictionary  and store it in the _icon_name_to_path_dict attribute
-        self._icon_name_to_path_dict = self.get_icon_name_to_path_dict()
+        # Create an empty dictionary to store icons
+        self._icon_cache_dict = dict()
+
+        # Get the icon name to path dictionary. If the _icon_name_to_path_dict attribute is not already set, store it. 
+        # Otherwise, keep the existing _icon_name_to_path_dict attribute value.
+        if not TablerQIcon._icon_name_to_path_dict:
+            TablerQIcon._icon_name_to_path_dict = self.get_icon_name_to_path_dict()
 
     # Special Methods
     # ---------------
@@ -135,13 +145,17 @@ class TablerQIcon:
         Returns:
             QtGui.QIcon : QIcon object for the given icon name
         """
+        # Check if the icon already exists in the cache
+        if name in self._icon_cache_dict:
+            return self._icon_cache_dict[name]
+    
         # Get the path of the icon from the dictionary using the name as the key
-        svg_icon_path = self._icon_name_to_path_dict.get(name)
+        svg_icon_path = self._icon_name_to_path_dict.get(name, str())
 
-        # Return empty qicon if the icon doesn't exist in the dictionary
-        if not svg_icon_path:
-            # Print a message indicating that the icon is not available
-            print(f'WARNING: Icon "{name}" is not available.')
+        # Check if the path obtained points to an existing file, if not log a warning and return an empty QIcon
+        if not os.path.isfile(svg_icon_path):
+            # Log a warning if the requested icon is not available or not a valid file
+            logging.warning(f'Icon "{name}" is not available or not a valid file.')
             # Return an empty QIcon object
             return QtGui.QIcon()
 
@@ -195,6 +209,9 @@ class TablerQIcon:
         # Create a QIcon object using the rendered image       
         icon = QtGui.QIcon(pixmap)
 
+        # Cache the created QIcon object
+        self._icon_cache_dict[name] = icon
+
         # Return the icon
         return icon
     
@@ -243,10 +260,10 @@ class TablerQIcon:
             List[str]: A list containing all the available icon names.
         """
         # Retrieve the dictionary mapping from icon names to their paths
-        icon_name_to_path_dict = cls.get_icon_name_to_path_dict()
+        cls._icon_name_to_path_dict = cls.get_icon_name_to_path_dict() if not cls._icon_name_to_path_dict else cls._icon_name_to_path_dict
 
         # Return the list of icon names
-        return list(icon_name_to_path_dict.keys())
+        return list(cls._icon_name_to_path_dict.keys())
 
     @classmethod
     def get_icon_path(cls, name: str = None) -> Optional[str]:
@@ -264,16 +281,16 @@ class TablerQIcon:
             return TABLER_ICONS_SVG_DIRECTORY
 
         # Retrieve the dictionary mapping from icon names to their paths
-        icon_name_to_path_dict = cls.get_icon_name_to_path_dict()
+        cls._icon_name_to_path_dict = cls.get_icon_name_to_path_dict() if not cls._icon_name_to_path_dict else cls._icon_name_to_path_dict
 
         # Return the path corresponding to the provided icon name
-        return icon_name_to_path_dict.get(name)
+        return cls._icon_name_to_path_dict.get(name)
 
 # Main Execution
 # --------------
 if __name__ == '__main__':
     from PyQt5 import QtWidgets
-    use('PyQt5')
+    set_backend('PyQt5')
 
     # Create the application
     app = QtWidgets.QApplication(sys.argv)
