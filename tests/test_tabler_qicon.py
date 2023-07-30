@@ -10,7 +10,7 @@ from PyQt5 import QtGui, QtWidgets
 # Local imports
 # -------------
 import tabler_qicon
-tabler_qicon.use('PyQt5')
+tabler_qicon.set_backend('PyQt5')
 from tabler_qicon import TablerQIcon
 
 # Classes Definition
@@ -51,13 +51,33 @@ class TestTablerQIcon(unittest.TestCase):
         self.assertTrue(isinstance(icon_path, str))
         self.assertTrue(os.path.exists(icon_path))
 
-    def test_icon_retrieval(self):
-        """Test the icon retrieval from TablerQIcon.
+    def test_icon_retrieval_instance(self):
+        """Test the icon retrieval from an instance of TablerQIcon.
         """
-        # Put the name of one icon from your directory here.
+        # Use the name of an icon from your directory here.
         icon = self.tabler_qicon.users
         # Check if the returned object is QIcon.
         self.assertTrue(isinstance(icon, QtGui.QIcon))
+
+    def test_icon_retrieval_class(self):
+        """Test the icon retrieval from the TablerQIcon class itself.
+        """
+        # Use the name of an icon from your directory here.
+        icon = TablerQIcon.users
+        # Check if the returned object is QIcon.
+        self.assertTrue(isinstance(icon, QtGui.QIcon))
+
+    def test_icon_name_read_only_instance(self):
+        """Test if icon names are read-only on an instance of TablerQIcon.
+        """
+        with self.assertRaises(AttributeError):
+            self.tabler_qicon.users = QtGui.QIcon()
+
+    def test_icon_name_read_only_class(self):
+        """Test if icon names are read-only on the TablerQIcon class itself.
+        """
+        with self.assertRaises(AttributeError):
+            TablerQIcon.users = QtGui.QIcon()
 
 # Main Execution
 # --------------
