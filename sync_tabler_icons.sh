@@ -85,7 +85,7 @@ generate_pyi_file() {
   echo "(https://github.com/tabler/tabler-icons/tree/master/icons) into the"
   echo "local directory \`tabler_qicon/icons\` as SVG files."
   echo ""
-  echo "Each SVG file in this directory is reflected as a method in this file"
+  echo "Each SVG file in this directory is reflected as an attribute in this file"
   echo "that returns a QIcon object."
   echo ""
   echo "The \`sync_tabler_icons.sh\` script updates this file whenever the script is run,"
