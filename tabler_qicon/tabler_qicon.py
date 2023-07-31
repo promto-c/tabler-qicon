@@ -1,5 +1,6 @@
 # Standard library imports
 # ------------------------
+import importlib
 import keyword
 import logging
 import os
@@ -27,13 +28,12 @@ def set_backend(lib_name: Optional[str] = None):
     global QtCore, QtGui, QtWidgets, QtSvg
 
     # Try to import the modules from the specified Qt library
-    QtCore = __import__(f'{lib_name}.QtCore', fromlist=[''])
-    QtGui = __import__(f'{lib_name}.QtGui', fromlist=[''])
-    QtWidgets = __import__(f'{lib_name}.QtWidgets', fromlist=[''])
-
+    QtCore = importlib.import_module(f"{lib_name}.QtCore")
+    QtGui = importlib.import_module(f"{lib_name}.QtGui")
+    QtWidgets = importlib.import_module(f"{lib_name}.QtWidgets")
     # Some libraries may not support QtSvg, handle it separately
     try:
-        QtSvg = __import__(f'{lib_name}.QtSvg', fromlist=[''])
+        QtSvg = importlib.import_module(f"{lib_name}.QtSvg")
     except ModuleNotFoundError:
         # If QtSvg is not available, log a warning and set QtSvg as None
         QtSvg = None
@@ -71,7 +71,7 @@ class TablerQIconMeta(type):
 
     Attributes:
         _icon_name_to_path_dict: A shared class variable as an empty dictionary to 
-        store the icon name and path.
+            store the icon name and path.
     """
     # Class Variables Definition
     # --------------------------
@@ -161,7 +161,7 @@ class TablerQIconMeta(type):
         return cls._icon_name_to_path_dict
 
     @classmethod
-    def _get_qicon(cls, name: str, color: QtGui.QColor = QtGui.QColor(), size: int = 24, 
+    def _get_qicon(cls, name: str, color: QtGui.QColor = None, size: int = 24, 
                    view_box_size: int = 24, stroke_width: int = 2, opacity: float = 1.0) -> QtGui.QIcon:
         """Retrieves the icon as a QIcon object.
 
@@ -170,7 +170,7 @@ class TablerQIconMeta(type):
 
         Args:
             name (str): The name of the icon to retrieve.
-            color (QtGui.QColor, optional): The color of the icon. Defaults to QtGui.QColor().
+            color (QtGui.QColor, optional): The color of the icon. If None, it defaults to the application's text color.
             size (int, optional): The size of the icon. Defaults to 24.
             view_box_size (int, optional): The size of the icon's view box. Defaults to 24.
             stroke_width (int, optional): The width of the icon's stroke. Defaults to 2.
@@ -179,6 +179,9 @@ class TablerQIconMeta(type):
         Returns:
             QtGui.QIcon : QIcon object for the given icon name.
         """
+        # Use the application's text color if no color is specified
+        color = QtWidgets.QApplication.instance().palette().color(QtGui.QPalette.Text) if color is None else color
+
         # Retrieve the dictionary mapping icon names to their paths
         icon_name_to_path_dict = cls._get_icon_name_to_path_dict()
 
@@ -271,7 +274,7 @@ class TablerQIcon(metaclass=TablerQIconMeta):
             opacity (float): opacity of the icon
         """
         # Save the properties
-        self._color = QtGui.QPalette().color(QtGui.QPalette.ColorRole.Text) if not color else color
+        self._color = color
         self._size = size
         self._view_box_size = view_box_size
         self._stroke_width = stroke_width
