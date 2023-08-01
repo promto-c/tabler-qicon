@@ -14,6 +14,7 @@ from xml.etree import ElementTree
 # Declare the variables for the Qt libraries as None initially
 QtCore = QtGui = QtWidgets = QtSvg = None
 
+
 def set_backend(lib_name: Optional[str] = None):
     """Sets the preferred Qt library specified by the user.
 
@@ -37,7 +38,10 @@ def set_backend(lib_name: Optional[str] = None):
     except ModuleNotFoundError:
         # If QtSvg is not available, log a warning and set QtSvg as None
         QtSvg = None
-        logging.warning(f'The QtSvg module could not be imported from {lib_name}. SVG icon functionality may not be available.')
+        logging.warning(
+            f'The QtSvg module could not be imported from {lib_name}. SVG icon functionality may not be available.'
+        )
+
 
 # Loop through the list of Qt libraries in order of preference
 for lib_name in ['PyQt6', 'PySide6', 'PyQt5', 'PySide2']:
@@ -53,11 +57,14 @@ for lib_name in ['PyQt6', 'PySide6', 'PyQt5', 'PySide2']:
         break
 else:
     # If none of the libraries could be imported, raise an ImportError
-    raise ImportError('No Qt libraries could be imported. Please ensure that at least one of PyQt6, PyQt5, PySide6, or PySide2 is installed.')
+    raise ImportError(
+        'No Qt libraries could be imported. Please ensure that at least one of PyQt6, PyQt5, PySide6, or PySide2 is installed.'
+    )
 
 # Constants Definition
 # --------------------
 TABLER_ICONS_SVG_DIRECTORY = os.path.join(os.path.dirname(__file__), 'icons')
+
 
 # Classes Definition
 # ------------------
@@ -65,12 +72,12 @@ class TablerQIconMeta(type):
     """Metaclass for TablerQIcon.
 
     This metaclass enables direct access to icons as attributes of the TablerQIcon class.
-    It uses default arguments of the `_get_qicon` method when used without an instance. 
-    However, when used with an instance, it uses the arguments of the instance from 
+    It uses default arguments of the `_get_qicon` method when used without an instance.
+    However, when used with an instance, it uses the arguments of the instance from
     the `get_qicon` method of the main class.
 
     Attributes:
-        _icon_name_to_path_dict: A shared class variable as an empty dictionary to 
+        _icon_name_to_path_dict: A shared class variable as an empty dictionary to
             store the icon name and path.
     """
     # Class Variables Definition
@@ -83,9 +90,9 @@ class TablerQIconMeta(type):
     def __getattr__(cls, name: str) -> QtGui.QIcon:
         """Allows direct access to the icons as attributes of the class.
 
-        NOTE: This is a class-level method. It gets called when a user attempts 
-        to access an attribute that doesn't exist directly on the class (i.e., 
-        without an instance). It employs the default arguments of the `_get_qicon` 
+        NOTE: This is a class-level method. It gets called when a user attempts
+        to access an attribute that doesn't exist directly on the class (i.e.,
+        without an instance). It employs the default arguments of the `_get_qicon`
         method to retrieve the requested attribute.
 
         Args:
@@ -100,7 +107,7 @@ class TablerQIconMeta(type):
         """Controls how attributes are set on instances of the class.
 
         This method overrides the default behavior for setting attributes.
-        No attributes can be set in this metaclass, an attempt to do so will 
+        No attributes can be set in this metaclass, an attempt to do so will
         raise an AttributeError.
 
         Args:
@@ -111,14 +118,16 @@ class TablerQIconMeta(type):
             AttributeError: Raised when an attempt is made to set any attribute.
         """
         # No attributes can be set in this metaclass
-        raise AttributeError(f"Cannot set attribute '{name}'. This attribute is not allowed.")
+        raise AttributeError(
+            f"Cannot set attribute '{name}'. This attribute is not allowed.")
 
     # Class Methods
     # -------------
     @classmethod
     def _get_icon_name_to_path_dict(cls) -> Dict[str, str]:
-        """Scans the predefined icon directory and constructs a dictionary mapping sanitized SVG file names to their respective file paths.
-        
+        """Scans the predefined icon directory and constructs a dictionary mapping sanitized SVG file names
+        to their respective file paths.
+
         Returns:
             Dict[str, str]: containing the icon name as key and the icon path as value
 
@@ -132,17 +141,21 @@ class TablerQIconMeta(type):
         # Ensure the specified directory exists before proceeding
         if not os.path.isdir(TABLER_ICONS_SVG_DIRECTORY):
             # If the directory does not exist, raise a FileNotFoundError with a descriptive message
-            raise FileNotFoundError(f"Directory {TABLER_ICONS_SVG_DIRECTORY} does not exist")
-        
+            raise FileNotFoundError(
+                f"Directory {TABLER_ICONS_SVG_DIRECTORY} does not exist")
+
         # Create an empty dictionary to store the icon name and path
         icon_name_to_path_dict = dict()
 
         # Get a list of all SVG files in the TABLER_ICONS_SVG_DIRECTORY
-        svg_files = [ file for file in os.listdir(TABLER_ICONS_SVG_DIRECTORY) if file.endswith('.svg') ]
+        svg_files = [
+            file for file in os.listdir(TABLER_ICONS_SVG_DIRECTORY)
+            if file.endswith('.svg')
+        ]
 
         # Compile the regex pattern once to avoid recompilation in each loop iteration
-        pattern = re.compile('[\W_]+')
-        
+        pattern = re.compile(r'[\W_]+')
+
         # For each SVG file, sanitize the file name to create the icon name
         for svg_file in svg_files:
             # Use regex to replace invalid characters with an underscore
@@ -150,9 +163,10 @@ class TablerQIconMeta(type):
             # Check if the icon name is a Python keyword or starts with a number
             if keyword.iskeyword(icon_name) or icon_name[0].isdigit():
                 icon_name = "_" + icon_name
-                            
+
             # Add the icon name and path to the icon_name_to_path_dict
-            icon_name_to_path_dict[icon_name] = os.path.join(TABLER_ICONS_SVG_DIRECTORY, svg_file)
+            icon_name_to_path_dict[icon_name] = os.path.join(TABLER_ICONS_SVG_DIRECTORY,
+                                                             svg_file)
 
         # Store the constructed dictionary in the class attribute _icon_name_to_path_dict for future reference
         cls._icon_name_to_path_dict = icon_name_to_path_dict
@@ -161,11 +175,16 @@ class TablerQIconMeta(type):
         return cls._icon_name_to_path_dict
 
     @classmethod
-    def _get_qicon(cls, name: str, color: QtGui.QColor = None, size: int = 24, 
-                   view_box_size: int = 24, stroke_width: int = 2, opacity: float = 1.0) -> QtGui.QIcon:
+    def _get_qicon(cls,
+                   name: str,
+                   color: QtGui.QColor = None,
+                   size: int = 24,
+                   view_box_size: int = 24,
+                   stroke_width: int = 2,
+                   opacity: float = 1.0) -> QtGui.QIcon:
         """Retrieves the icon as a QIcon object.
 
-        Retrieves the path of the specified icon, checks if the path points to an 
+        Retrieves the path of the specified icon, checks if the path points to an
         existing file, and if it does, loads and returns the icon.
 
         Args:
@@ -180,7 +199,8 @@ class TablerQIconMeta(type):
             QtGui.QIcon : QIcon object for the given icon name.
         """
         # Use the application's text color if no color is specified
-        color = QtWidgets.QApplication.instance().palette().color(QtGui.QPalette.ColorRole.Text) if color is None else color
+        color = QtWidgets.QApplication.instance().palette().color(
+            QtGui.QPalette.ColorRole.Text) if color is None else color
 
         # Retrieve the dictionary mapping icon names to their paths
         icon_name_to_path_dict = cls._get_icon_name_to_path_dict()
@@ -216,7 +236,7 @@ class TablerQIconMeta(type):
 
             # Fill the pixmap with transparent color
             pixmap.fill(QtCore.Qt.GlobalColor.transparent)
-            
+
             # Create a QPainter object to draw on the QPixmap
             painter = QtGui.QPainter(pixmap)
 
@@ -228,26 +248,30 @@ class TablerQIconMeta(type):
             pixmap = QtGui.QPixmap(svg_icon_path)
 
             # Set the size of the pixmap
-            pixmap = pixmap.scaled(size, size, QtCore.Qt.AspectRatioMode.KeepAspectRatio, QtCore.Qt.TransformationMode.SmoothTransformation)
+            pixmap = pixmap.scaled(size, size,
+                                   QtCore.Qt.AspectRatioMode.KeepAspectRatio,
+                                   QtCore.Qt.TransformationMode.SmoothTransformation)
 
             # Create a QPainter object to draw on the QPixmap
             painter = QtGui.QPainter(pixmap)
-        
+
         # Set the opacity of the icon
         painter.setOpacity(opacity)
         # Set the composition mode to "SourceIn" to composite the color on the icon
-        painter.setCompositionMode(QtGui.QPainter.CompositionMode.CompositionMode_SourceIn)
+        painter.setCompositionMode(
+            QtGui.QPainter.CompositionMode.CompositionMode_SourceIn)
         # Fill the pixmap with the specified color
         painter.fillRect(pixmap.rect(), color)
         # End the painter
         painter.end()
 
-        # Create a QIcon object using the rendered image       
+        # Create a QIcon object using the rendered image
         icon = QtGui.QIcon(pixmap)
 
         # Return the icon
         return icon
-    
+
+
 class TablerQIcon(metaclass=TablerQIconMeta):
     """Class that loads icons from the tabler-icons directory and makes them available as attributes.
 
@@ -261,14 +285,20 @@ class TablerQIcon(metaclass=TablerQIconMeta):
         _stroke_width (int): The width of the icon's stroke.
         _opacity (float): The opacity of the icon.
     """
+
     # Initialization and Setup
     # ------------------------
-    def __init__(self, color: QtGui.QColor = None, size: int = 24, view_box_size: int = 24, stroke_width: int = 2, opacity: float = 1.0):
+    def __init__(self,
+                 color: QtGui.QColor = None,
+                 size: int = 24,
+                 view_box_size: int = 24,
+                 stroke_width: int = 2,
+                 opacity: float = 1.0):
         """Initialize the widget and load the icons from the tabler-icons directory.
 
         Args:
             color (QtGui.QColor): color of the icon
-            size (int): size of the icon 
+            size (int): size of the icon
             view_box_size (int): size of the view box of the icon
             stroke_width (int): width of the stroke of the icon
             opacity (float): opacity of the icon
@@ -287,7 +317,7 @@ class TablerQIcon(metaclass=TablerQIconMeta):
     # ---------------
     def __call__(self, name: str) -> QtGui.QIcon:
         """Allows access to the icons using function call style.
-        
+
         Args:
             name (str): The name of the icon to retrieve.
 
@@ -299,9 +329,9 @@ class TablerQIcon(metaclass=TablerQIconMeta):
     def __getattr__(self, name: str) -> QtGui.QIcon:
         """Allows access to the icons as attributes of the class instance.
 
-        NOTE: This is an instance-level method. It gets called when a user 
-        attempts to access an attribute that doesn't exist on the class 
-        instance. It employs the instance's arguments of the `get_qicon` 
+        NOTE: This is an instance-level method. It gets called when a user
+        attempts to access an attribute that doesn't exist on the class
+        instance. It employs the instance's arguments of the `get_qicon`
         method to retrieve the requested attribute.
 
         Args:
@@ -314,7 +344,7 @@ class TablerQIcon(metaclass=TablerQIconMeta):
 
     def __getitem__(self, name: str) -> QtGui.QIcon:
         """Allows access to the icons as index.
-        
+
         Args:
             name (str): The name of the icon to retrieve.
         Returns:
@@ -330,13 +360,16 @@ class TablerQIcon(metaclass=TablerQIconMeta):
             value : The value to set the attribute to.
 
         Raises:
-            AttributeError: If an attempt is made to set an attribute that corresponds to an icon name accessed via __getattr__.
+            AttributeError: If an attempt is made to set an attribute that corresponds
+                to an icon name accessed via __getattr__.
         """
         # Only allow attributes that are already defined to be set
-        if name in ('_color', '_size', '_view_box_size', '_stroke_width', '_opacity', '_icon_cache_dict'):
+        if name in ('_color', '_size', '_view_box_size', '_stroke_width', '_opacity',
+                    '_icon_cache_dict'):
             super().__setattr__(name, value)
         else:
-            raise AttributeError(f"Cannot set attribute '{name}'. This attribute is not allowed.")
+            raise AttributeError(
+                f"Cannot set attribute '{name}'. This attribute is not allowed.")
 
     # Extended Methods
     # ----------------
@@ -354,7 +387,12 @@ class TablerQIcon(metaclass=TablerQIconMeta):
             return self._icon_cache_dict[name]
 
         # Create the QIcon object using the metaclass's method, with the instance's arguments
-        icon = self.__class__._get_qicon(name=name, color=self._color, size=self._size, view_box_size=self._view_box_size, stroke_width=self._stroke_width, opacity=self._opacity)
+        icon = self.__class__._get_qicon(name=name,
+                                         color=self._color,
+                                         size=self._size,
+                                         view_box_size=self._view_box_size,
+                                         stroke_width=self._stroke_width,
+                                         opacity=self._opacity)
 
         # Cache the created QIcon object
         self._icon_cache_dict[name] = icon
@@ -368,12 +406,12 @@ class TablerQIcon(metaclass=TablerQIconMeta):
     def get_icon_name_to_path_dict(cls) -> Dict[str, str]:
         """Retrieves a dictionary mapping sanitized icon names to their respective file paths.
 
-        Icon names in the dictionary are derived from SVG file names, where invalid characters 
-        have been replaced with underscores, and an underscore is prepended for names that are 
+        Icon names in the dictionary are derived from SVG file names, where invalid characters
+        have been replaced with underscores, and an underscore is prepended for names that are
         Python keywords or start with a digit.
 
         Returns:
-            Dict[str, str]: A dictionary with sanitized SVG file names (icon names) as keys and 
+            Dict[str, str]: A dictionary with sanitized SVG file names (icon names) as keys and
                 their respective file paths as values.
         """
         # Return the dictionary containing the icon name and path
@@ -382,7 +420,7 @@ class TablerQIcon(metaclass=TablerQIconMeta):
     @classmethod
     def get_icon_names(cls) -> List[str]:
         """Provides a list of all available icon names.
-        
+
         Returns:
             List[str]: A list containing all the available icon names.
         """
@@ -413,6 +451,7 @@ class TablerQIcon(metaclass=TablerQIconMeta):
         # Return the path corresponding to the provided icon name
         return icon_name_to_path_dict.get(name)
 
+
 # Main Execution
 # --------------
 if __name__ == '__main__':
@@ -428,4 +467,4 @@ if __name__ == '__main__':
     tabler_qicon = TablerQIcon()
 
     # Check attribute
-    icon_users = tabler_qicon.users # output <PyQt5.QtGui.QIcon object at 0x...>
+    icon_users = tabler_qicon.users  # output <PyQt5.QtGui.QIcon object at 0x...>

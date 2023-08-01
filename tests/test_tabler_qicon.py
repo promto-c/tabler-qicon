@@ -10,8 +10,10 @@ from PyQt5 import QtGui, QtWidgets
 # Local imports
 # -------------
 import tabler_qicon
+
 tabler_qicon.set_backend('PyQt5')
 from tabler_qicon import TablerQIcon
+
 
 # Fixture Definition
 # ------------------
@@ -21,15 +23,18 @@ def qt_application():
     yield app
     app.quit()
 
+
 @pytest.fixture
 def tabler_qicon_instance():
     return TablerQIcon()
+
 
 # Test Cases
 # ----------
 class TestTablerQIcon(object):
     """Test case for the TablerQIcon class.
     """
+
     def test_icon_names(self, tabler_qicon_instance):
         """Test the get_icon_names method.
         """
