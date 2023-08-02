@@ -30,10 +30,13 @@ Create an instance of `TablerQIcon` and set the properties by passing arguments 
 
 ```python
 from PyQt5 import QtGui
+
+import tabler_qicon
+tabler_qicon.use_backend('PyQt5')
 from tabler_qicon import TablerQIcon
 
-tabler = TablerQIcon(color=QtGui.QColor(255, 0, 0))  # Set color to red during instantiation
-icon = tabler.users  # This icon will be colored red
+tabler_icon = TablerQIcon(color=QtGui.QColor(255, 0, 0))  # Set color to red during instantiation
+users_qicon = tabler_icon.users  # This QIcon will be colored red
 
 # WIP: Add more example usages
 ```
