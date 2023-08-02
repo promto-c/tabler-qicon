@@ -48,6 +48,12 @@ Run the tests:
 pytest tests
 ```
 
+## Coding Style
+
+This project follows the PEP 8 Python coding standard and uses [flake8](https://flake8.pycqa.org/en/latest/) for enforcement. [yapf](https://github.com/google/yapf) is our chosen auto-formatter.
+
+In addition to PEP 8, we also follow the [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html) for docstrings in order to maintain clear and consistent documentation. 
+
 ## License
 
 Tabler QIcon is licensed under the [MIT License](LICENSE).
