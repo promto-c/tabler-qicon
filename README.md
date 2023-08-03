@@ -35,8 +35,26 @@ import tabler_qicon
 tabler_qicon.use_backend('PyQt5')
 from tabler_qicon import TablerQIcon
 
-tabler_icon = TablerQIcon(color=QtGui.QColor(255, 0, 0))  # Set color to red during instantiation
-users_qicon = tabler_icon.users  # This QIcon will be colored red
+# Create an instance of TablerQIcon with opacity set to 0.6
+tabler_icon = TablerQIcon(opacity=0.6)
+
+# ... Additional code ...
+
+# Set the QIcon for the refresh_button using the 'refresh' icon name as an attribute
+refresh_button.setIcon(tabler_icon.refresh)
+
+# Set the QIcon for the word_wrap_button using the 'text_wrap' icon name as an attribute
+word_wrap_button.setIcon(tabler_icon.text_wrap)
+
+# You can access other icons in a similar way using their respective attribute names.
+# For example, if you have an icon named 'home', you can access it like this:
+# home_button.setIcon(tabler_icon.home)
+
+# The 'tabler-qicon' library includes Python stubs (.pyi files) that enable
+# pre-access to attributes for better code autocompletion and type-checking.
+# This means that your IDE should be able to provide you with auto-suggestions
+# and type hints when accessing icon names as attributes, making it easier
+# to work with the Tabler Icons in your code.
 
 # WIP: Add more example usages
 ```
