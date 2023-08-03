@@ -198,9 +198,11 @@ class TablerQIconMeta(type):
         Returns:
             QtGui.QIcon : QIcon object for the given icon name.
         """
-        # Use the application's text color if no color is specified
-        color = QtWidgets.QApplication.instance().palette().color(
-            QtGui.QPalette.ColorRole.Text) if color is None else color
+        # Check if a color was provided. If not, use the application's default text color
+        if color is None:
+            # Use the application's text color if no color is specified
+            app_instance = QtWidgets.QApplication.instance()
+            color = app_instance.palette().color(QtGui.QPalette.ColorRole.Text)
 
         # Retrieve the dictionary mapping icon names to their paths
         icon_name_to_path_dict = cls._get_icon_name_to_path_dict()
