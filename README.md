@@ -50,7 +50,7 @@ word_wrap_button.setIcon(tabler_icon.text_wrap)
 # For example, if you have an icon named 'home', you can access it like this:
 # home_button.setIcon(tabler_icon.home)
 
-# The 'tabler-qicon' library includes Python stubs (.pyi files) that enable
+# The 'tabler-qicon' package includes Python stubs (.pyi files) that enable
 # pre-access to attributes for better code autocompletion and type-checking.
 # This means that your IDE should be able to provide you with auto-suggestions
 # and type hints when accessing icon names as attributes, making it easier
