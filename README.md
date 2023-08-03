@@ -46,10 +46,6 @@ refresh_button.setIcon(tabler_icon.refresh)
 # Set the QIcon for the word_wrap_button using the 'text_wrap' icon name as an attribute
 word_wrap_button.setIcon(tabler_icon.text_wrap)
 
-# You can access other icons in a similar way using their respective attribute names.
-# For example, if you have an icon named 'home', you can access it like this:
-# home_button.setIcon(tabler_icon.home)
-
 # The 'tabler-qicon' package includes Python stubs (.pyi files) that enable
 # pre-access to attributes for better code autocompletion and type-checking.
 # This means that your IDE should be able to provide you with auto-suggestions
