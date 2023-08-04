@@ -15,16 +15,11 @@ from xml.etree import ElementTree
 QtCore = QtGui = QtWidgets = QtSvg = None
 
 
-def set_backend(lib_name: Optional[str] = None):
-    """Sets the preferred Qt library specified by the user.
-
-    This function attempts to import QtCore, QtGui, QtWidgets, and QtSvg from the specified
-    library. If no library is specified, it will try to import the libraries in the following
-    order: ["PyQt6", "PySide6", "PyQt5", "PySide2"].
+def set_backend(lib_name: str):
+    """Sets the preferred Qt library to import QtCore, QtGui, QtWidgets, and QtSvg.
 
     Args:
-        lib_name (str, optional): The preferred Qt library. If not provided, the function defaults to the
-            order mentioned above.
+        lib_name (str): The preferred Qt library.
     """
     global QtCore, QtGui, QtWidgets, QtSvg
 
@@ -42,7 +37,7 @@ def set_backend(lib_name: Optional[str] = None):
             f'The QtSvg module could not be imported from {lib_name}. SVG icon functionality may not be available.'
         )
 
-
+# Try to import the libraries in the following order: ["PyQt6", "PySide6", "PyQt5", "PySide2"].
 # Loop through the list of Qt libraries in order of preference
 for lib_name in ['PyQt6', 'PySide6', 'PyQt5', 'PySide2']:
     try:
