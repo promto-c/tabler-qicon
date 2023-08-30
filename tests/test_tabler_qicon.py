@@ -1,17 +1,15 @@
-# Standard library imports
+# Standard Library Imports
 # ------------------------
 import os
 
-# Related third party imports
+# Related Third Party Imports
 # ---------------------------
 import pytest
 from PyQt5 import QtGui, QtWidgets
 
-# Local imports
+# Local Imports
 # -------------
-import tabler_qicon
-
-tabler_qicon.set_backend('PyQt5')
+os.environ['QT_API'] = 'PyQt5'
 from tabler_qicon import TablerQIcon
 
 

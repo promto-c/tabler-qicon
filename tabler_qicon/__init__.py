@@ -1,1 +1,1 @@
-from .tabler_qicon import TablerQIcon, set_backend
+from .tabler_qicon import TablerQIcon, use_backend

@@ -1,64 +1,96 @@
-# Standard library imports
+# Standard Library Imports
 # ------------------------
 import importlib
 import keyword
 import logging
 import os
+from pathlib import Path
 import re
 import sys
 from typing import Dict, List, Optional
 from xml.etree import ElementTree
 
-# Related third party imports
+# Related Third Party Imports
 # ---------------------------
 # Declare the variables for the Qt libraries as None initially
 QtCore = QtGui = QtWidgets = QtSvg = None
 
 
-def set_backend(lib_name: str):
-    """Sets the preferred Qt library to import QtCore, QtGui, QtWidgets, and QtSvg.
+# Define the mappings of API names
+API_NAMES = {
+    'pyqt5': 'PyQt5',
+    'pyside2': 'PySide2',
+    'pyqt6': 'PyQt6',
+    'pyside6': 'PySide6',
+}
+
+# Check for the QT_API environment variable
+API = os.environ.get('QT_API', '').lower()
+
+def use_backend(lib_name: Optional[str] = None):
+    """Sets the preferred Qt library specified by the user.
+
+    This function attempts to import QtCore, QtGui, QtWidgets, and QtSvg from the specified
+    library. If no library is specified, it will try to import the libraries based on the QT_API environment variable or default order.
 
     Args:
-        lib_name (str): The preferred Qt library.
+        lib_name (str, optional): The preferred Qt library. If not provided, the function defaults to the
+            value from QT_API or a default order.
     """
     global QtCore, QtGui, QtWidgets, QtSvg
 
-    # Try to import the modules from the specified Qt library
-    QtCore = importlib.import_module(f"{lib_name}.QtCore")
-    QtGui = importlib.import_module(f"{lib_name}.QtGui")
-    QtWidgets = importlib.import_module(f"{lib_name}.QtWidgets")
-    # Some libraries may not support QtSvg, handle it separately
-    try:
-        QtSvg = importlib.import_module(f"{lib_name}.QtSvg")
-    except ModuleNotFoundError:
-        # If QtSvg is not available, log a warning and set QtSvg as None
-        QtSvg = None
-        logging.warning(
-            f'The QtSvg module could not be imported from {lib_name}. SVG icon functionality may not be available.'
-        )
+    # If lib_name is specified, try to import the modules from that Qt library
+    if lib_name:
+        # Try to import the modules from the specified Qt library
+        QtCore = importlib.import_module(f"{lib_name}.QtCore")
+        QtGui = importlib.import_module(f"{lib_name}.QtGui")
+        QtWidgets = importlib.import_module(f"{lib_name}.QtWidgets")
 
-# Try to import the libraries in the following order: ["PyQt6", "PySide6", "PyQt5", "PySide2"].
-# Loop through the list of Qt libraries in order of preference
-for lib_name in ['PyQt6', 'PySide6', 'PyQt5', 'PySide2']:
-    try:
-        # Attempt to use the current library
-        set_backend(lib_name)
-    except ModuleNotFoundError:
-        # If the current library is not found, continue to the next one
-        continue
-    else:
-        # If the current library is imported successfully, log this information and break the loop
-        logging.info(f'Successfully imported {lib_name}')
-        break
-else:
+        # Some libraries may not support QtSvg, handle it separately
+        try:
+            QtSvg = importlib.import_module(f"{lib_name}.QtSvg")
+        except ModuleNotFoundError:
+            # If QtSvg is not available, log a warning and set QtSvg as None
+            QtSvg = None
+            logging.warning(
+                f'The QtSvg module could not be imported from {lib_name}. SVG icon functionality may not be available.'
+            )
+        return
+
+    # If no lib_name is provided and QT_API is set, use that
+    if API in API_NAMES:
+        try:
+            # Attempt to use the current library
+            use_backend(API_NAMES[API])
+            logging.info(f'Successfully imported {API_NAMES[API]}')
+            return
+        except ModuleNotFoundError:
+            pass
+
+    # Try to import the libraries in the following order: ["PyQt5", "PySide2", "PyQt6", "PySide6"].
+    # Loop through the list of Qt libraries in order of preference
+    for lib_name in API_NAMES.values():
+        try:
+            # Attempt to use the current library
+            use_backend(lib_name)
+            logging.info(f'Successfully imported {lib_name}')
+            return
+        except ModuleNotFoundError:
+            # If the current library is not found, continue to the next one
+            continue
+
     # If none of the libraries could be imported, raise an ImportError
     raise ImportError(
         'No Qt libraries could be imported. Please ensure that at least one of PyQt6, PyQt5, PySide6, or PySide2 is installed.'
     )
 
+# Call the use_backend function to ensure the right backend is set
+use_backend()
+
+
 # Constants Definition
 # --------------------
-TABLER_ICONS_SVG_DIRECTORY = os.path.join(os.path.dirname(__file__), 'icons')
+TABLER_ICONS_SVG_DIRECTORY = Path(__file__).parent / 'icons'
 
 
 # Classes Definition
@@ -160,8 +192,7 @@ class TablerQIconMeta(type):
                 icon_name = "_" + icon_name
 
             # Add the icon name and path to the icon_name_to_path_dict
-            icon_name_to_path_dict[icon_name] = os.path.join(TABLER_ICONS_SVG_DIRECTORY,
-                                                             svg_file)
+            icon_name_to_path_dict[icon_name] = TABLER_ICONS_SVG_DIRECTORY / svg_file
 
         # Store the constructed dictionary in the class attribute _icon_name_to_path_dict for future reference
         cls._icon_name_to_path_dict = icon_name_to_path_dict
@@ -455,7 +486,7 @@ if __name__ == '__main__':
     from PyQt5 import QtWidgets
 
     # Set the PyQT backend to PyQt5, ensuring TablerQIcon uses the same framework as the QApplication.
-    set_backend('PyQt5')
+    use_backend('PyQt5')
 
     # Create the application
     app = QtWidgets.QApplication(sys.argv)
