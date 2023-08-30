@@ -26,6 +26,7 @@ class QIcon: ...
 
 class ExtendedTablerQIcon(TablerQIcon):
     _123: QIcon
+    _12_hours: QIcon
     _24_hours: QIcon
     _2fa: QIcon
     _360: QIcon
@@ -151,6 +152,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     alphabet_cyrillic: QIcon
     alphabet_greek: QIcon
     alphabet_latin: QIcon
+    alt: QIcon
     ambulance: QIcon
     ampersand: QIcon
     analyze: QIcon
@@ -180,6 +182,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     apps_off: QIcon
     app_window: QIcon
     app_window_filled: QIcon
+    archery_arrow: QIcon
     archive: QIcon
     archive_filled: QIcon
     archive_off: QIcon
@@ -730,6 +733,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     brand_cupra: QIcon
     brand_cypress: QIcon
     brand_d3: QIcon
+    brand_databricks: QIcon
     brand_days_counter: QIcon
     brand_dcos: QIcon
     brand_debian: QIcon
@@ -869,6 +873,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     brand_openvpn: QIcon
     brand_opera: QIcon
     brand_pagekit: QIcon
+    brand_parsinta: QIcon
     brand_patreon: QIcon
     brand_paypal: QIcon
     brand_paypal_filled: QIcon
@@ -937,6 +942,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     brand_tabler: QIcon
     brand_tailwind: QIcon
     brand_taobao: QIcon
+    brand_teams: QIcon
     brand_ted: QIcon
     brand_telegram: QIcon
     brand_terraform: QIcon
@@ -946,6 +952,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     brand_tidal: QIcon
     brand_tikto_filled: QIcon
     brand_tiktok: QIcon
+    brand_tiktok_filled: QIcon
     brand_tinder: QIcon
     brand_topbuzz: QIcon
     brand_torchain: QIcon
@@ -1159,9 +1166,11 @@ class ExtendedTablerQIcon(TablerQIcon):
     caret_down_filled: QIcon
     caret_left: QIcon
     caret_left_filled: QIcon
+    caret_left_right: QIcon
     caret_right: QIcon
     caret_right_filled: QIcon
     caret_up: QIcon
+    caret_up_down: QIcon
     caret_up_filled: QIcon
     car_off: QIcon
     carousel_horizontal: QIcon
@@ -1436,7 +1445,9 @@ class ExtendedTablerQIcon(TablerQIcon):
     clipboard_typography: QIcon
     clipboard_x: QIcon
     clock: QIcon
+    clock_12: QIcon
     clock_2: QIcon
+    clock_24: QIcon
     clock_bolt: QIcon
     clock_cancel: QIcon
     clock_check: QIcon
@@ -1765,6 +1776,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     device_desktop_x: QIcon
     device_floppy: QIcon
     device_gamepad: QIcon
+    device_game_pad: QIcon
     device_gamepad_2: QIcon
     device_heart_monitor: QIcon
     device_heart_monitor_filled: QIcon
@@ -1920,6 +1932,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     device_tv: QIcon
     device_tv_off: QIcon
     device_tv_old: QIcon
+    device_usb: QIcon
     device_vision_pro: QIcon
     device_watch: QIcon
     device_watch_bolt: QIcon
@@ -2582,6 +2595,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     hexagon_number_8: QIcon
     hexagon_number_9: QIcon
     hexagon_off: QIcon
+    hexagon_plus: QIcon
     hexagons: QIcon
     hexagons_off: QIcon
     hierarchy: QIcon
@@ -2623,6 +2637,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     home_stats: QIcon
     home_up: QIcon
     home_x: QIcon
+    horse: QIcon
     horse_toy: QIcon
     hotel_service: QIcon
     hourglass: QIcon
@@ -2688,7 +2703,10 @@ class ExtendedTablerQIcon(TablerQIcon):
     inner_shadow_top_left_filled: QIcon
     inner_shadow_top_right: QIcon
     inner_shadow_top_right_filled: QIcon
+    input_ai: QIcon
+    input_check: QIcon
     input_search: QIcon
+    input_x: QIcon
     ironing: QIcon
     ironing_1: QIcon
     ironing_2: QIcon
@@ -2844,6 +2862,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     list: QIcon
     list_check: QIcon
     list_details: QIcon
+    list_letters: QIcon
     list_numbers: QIcon
     list_search: QIcon
     list_tree: QIcon
@@ -2969,12 +2988,15 @@ class ExtendedTablerQIcon(TablerQIcon):
     map_discount: QIcon
     map_dollar: QIcon
     map_down: QIcon
+    map_east: QIcon
     map_exclamation: QIcon
     map_heart: QIcon
     map_minus: QIcon
+    map_north: QIcon
     map_off: QIcon
     map_pause: QIcon
     map_pin: QIcon
+    map_pin_2: QIcon
     map_pin_bolt: QIcon
     map_pin_cancel: QIcon
     map_pin_check: QIcon
@@ -3001,8 +3023,10 @@ class ExtendedTablerQIcon(TablerQIcon):
     map_question: QIcon
     map_search: QIcon
     map_share: QIcon
+    map_south: QIcon
     map_star: QIcon
     map_up: QIcon
+    map_west: QIcon
     map_x: QIcon
     markdown: QIcon
     markdown_off: QIcon
@@ -3323,6 +3347,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     number_9: QIcon
     numbers: QIcon
     nurse: QIcon
+    nut: QIcon
     octagon: QIcon
     octagon_filled: QIcon
     octagon_off: QIcon
@@ -3402,6 +3427,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     pentagon: QIcon
     pentagon_filled: QIcon
     pentagon_off: QIcon
+    pentagon_plus: QIcon
     pentagram: QIcon
     pepper: QIcon
     pepper_off: QIcon
@@ -3425,6 +3451,9 @@ class ExtendedTablerQIcon(TablerQIcon):
     photo_bolt: QIcon
     photo_cancel: QIcon
     photo_check: QIcon
+    photo_circle: QIcon
+    photo_circle_minus: QIcon
+    photo_circle_plus: QIcon
     photo_code: QIcon
     photo_cog: QIcon
     photo_dollar: QIcon
@@ -3433,9 +3462,11 @@ class ExtendedTablerQIcon(TablerQIcon):
     photo_exclamation: QIcon
     photo_filled: QIcon
     photo_heart: QIcon
+    photo_hexagon: QIcon
     photo_minus: QIcon
     photo_off: QIcon
     photo_pause: QIcon
+    photo_pentagon: QIcon
     photo_pin: QIcon
     photo_plus: QIcon
     photo_question: QIcon
@@ -3445,6 +3476,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     photo_sensor_3: QIcon
     photo_share: QIcon
     photo_shield: QIcon
+    photo_square_rounded: QIcon
     photo_star: QIcon
     photo_up: QIcon
     photo_x: QIcon
@@ -4440,9 +4472,11 @@ class ExtendedTablerQIcon(TablerQIcon):
     user_edit: QIcon
     user_exclamation: QIcon
     user_heart: QIcon
+    user_hexagon: QIcon
     user_minus: QIcon
     user_off: QIcon
     user_pause: QIcon
+    user_pentagon: QIcon
     user_pin: QIcon
     user_plus: QIcon
     user_question: QIcon
@@ -4453,6 +4487,8 @@ class ExtendedTablerQIcon(TablerQIcon):
     user_shield: QIcon
     users_minus: QIcon
     users_plus: QIcon
+    user_square: QIcon
+    user_square_rounded: QIcon
     user_star: QIcon
     user_up: QIcon
     user_x: QIcon
@@ -4503,6 +4539,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     volume_2: QIcon
     volume_3: QIcon
     volume_off: QIcon
+    vs: QIcon
     walk: QIcon
     wall: QIcon
     wallet: QIcon
@@ -4549,6 +4586,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     webhook: QIcon
     webhook_off: QIcon
     weight: QIcon
+    wheel: QIcon
     wheelchair: QIcon
     wheelchair_off: QIcon
     whirl: QIcon
