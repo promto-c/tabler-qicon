@@ -1,63 +1,120 @@
 
 # Tabler QIcon
 
-Tabler QIcon is a Python package that provides easy access to [Tabler Icons](https://tabler-icons.io/) [[GitHub]](https://github.com/tabler/tabler-icons) for PyQt and PySide applications. It uses SVGs from Tabler Icons and converts them into QIcon objects, which can be used in PyQt and PySide applications.
+![GitHub](https://img.shields.io/github/license/promto-c/tabler-qicon)
+
+`Tabler QIcon` is a Python package that provides easy access to [Tabler Icons](https://tabler-icons.io/) [[Preview]](https://tabler-icons.io/) [[GitHub]](https://github.com/tabler/tabler-icons) for PyQt and PySide applications. It uses SVGs from Tabler Icons and converts them into QIcon objects, which can be used in PyQt and PySide applications.
 
 This library also supports icon customization such as changing color, size, view box size, stroke width, and opacity.
 
-## Prerequisites
+<details>
+  <summary><b>Preview icons</b></summary>
+
+  ![Tabler Icons](https://raw.githubusercontent.com/tabler/tabler-icons/master/.github/icons-dark.png)
+
+</details>
+
+## 🚀 Features
+
+- **Customizable Icons**: Adjust color, size, view box size, stroke width, and opacity.
+- **Developer-Friendly**: Python stubs enhance code autocompletion and type-checking in your IDE.
+- **Broad Compatibility**: Supports PyQt5, PyQt6, PySide2, and PySide6.
+
+## 📋 Prerequisites
 
 - Python 3.6 or later
-- PyQt5, PyQt6, PySide2, or PySide6
+- One of the following: PyQt5, PyQt6, PySide2, or PySide6
 
-## Installation
+## 💻 Installation
 
-**Note**: The `tabler-qicon` package is not currently available on PyPI. However, you can still install it directly from its GitHub repository using the following command:
+> The `tabler-qicon` package is not currently on PyPI. Install directly from GitHub:
 
 ```bash
 pip install git+https://github.com/promto-c/tabler-qicon.git
 ```
 
-If you are using a PyQt5 backend, you must also install PyQt5:
+Using PyQt5? Install it separately:
 
 ```bash
 pip install PyQt5
 ```
 
-## Usage
+## 🖌️ Usage
 
-Create an instance of `TablerQIcon` and set the properties by passing arguments during instantiation. Then, retrieve an icon as follows:
+### Setting the Backend
+
+#### Using Environment Variables (with `qtpy`)
+
+If you're using `qtpy` to maintain compatibility across different PyQt/PySide backends, you'll need to specify the backend before importing other modules:
 
 ```python
-from PyQt5 import QtGui
+import os
+os.environ['QT_API'] = 'PyQt5'  # Change 'PyQt5' to your desired backend
 
-import tabler_qicon
-tabler_qicon.use_backend('PyQt5')
 from tabler_qicon import TablerQIcon
 
-# Create an instance of TablerQIcon with opacity set to 0.6
-tabler_icon = TablerQIcon(opacity=0.6)
+# ... Additional code ...
+```
+
+#### Using the `use_backend` method
+
+Alternatively, you can also set the backend directly using the `use_backend` method:
+
+```python
+import tabler_qicon
+tabler_qicon.use_backend('PyQt5')
+
+from tabler_qicon import TablerQIcon
+
+# ... Additional code ...
+```
+
+### Default Usage
+
+Directly access icons with default properties:
+
+```python
+from PyQt5 import QtWidgets
+from tabler_qicon import TablerQIcon
 
 # ... Additional code ...
 
+refresh_button = QtWidgets.QPushButton("Refresh")
+
 # Set the QIcon for the refresh_button using the 'refresh' icon name as an attribute
-refresh_button.setIcon(tabler_icon.refresh)
-
-# Set the QIcon for the word_wrap_button using the 'text_wrap' icon name as an attribute
-word_wrap_button.setIcon(tabler_icon.text_wrap)
-
-# The 'tabler-qicon' package includes Python stubs (.pyi files) that enable
-# pre-access to attributes for better code autocompletion and type-checking.
-# This means that your IDE should be able to provide you with auto-suggestions
-# and type hints when accessing icon names as attributes, making it easier
-# to work with the Tabler Icons in your code.
-
-# WIP: Add more example usages
+refresh_button.setIcon(TablerQIcon.refresh)
 ```
 
-All properties (color, size, view_box_size, stroke_width, and opacity) can be set when creating an instance of `TablerQIcon`. If these are not specified, default values will be used.
+### Customized Icons
 
-## Development
+1. Instantiate `TablerQIcon` with your desired properties.
+2. Access icons using icon names.
+
+```python
+from PyQt5 import QtWidgets
+from tabler_qicon import TablerQIcon
+
+# ... Additional code ...
+
+# Example: Using a custom opacity
+tabler_icon = TablerQIcon(opacity=0.6)
+
+refresh_button = QtWidgets.QPushButton("Refresh")
+refresh_button = QtWidgets.QPushButton("Word Wrap")
+
+# Set the QIcon for the refresh_button using the 'refresh' icon name as an attribute
+refresh_button.setIcon(tabler_icon.refresh)
+# Set the QIcon for the word_wrap_button using the 'text_wrap' icon name as an attribute
+word_wrap_button.setIcon(tabler_icon.text_wrap)
+```
+
+### Retrieve All Icon Names
+
+```python
+print(TablerQIcon.get_icon_names())
+```
+
+## 🛠️ Development
 
 Run the tests:
 
@@ -65,15 +122,12 @@ Run the tests:
 pytest tests
 ```
 
-## Coding Style
+## 🖋️ Coding Style
 
-This project follows the PEP 8 Python coding standard and uses [flake8](https://flake8.pycqa.org/en/latest/) for enforcement. [yapf](https://github.com/google/yapf) is our chosen auto-formatter.
+Adhering to PEP 8 with [flake8](https://flake8.pycqa.org/en/latest/) oversight. Auto-formatting via [yapf](https://github.com/google/yapf). Our docstrings embrace the [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html) for clarity and consistency.
 
-In addition to PEP 8, we also follow the [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html) for docstrings in order to maintain clear and consistent documentation. 
+## 📜 License
 
-## License
+`Tabler QIcon` is licensed under the [MIT License](LICENSE).
 
-Tabler QIcon is licensed under the [MIT License](LICENSE).
-
-___
-**Note:** This README file was generated by ChatGPT.
+> **Note:** This `README.md` file was generated by ChatGPT.
