@@ -1,2 +1,2 @@
-recursive-include tabler_qicon *.pyi
-recursive-include tabler_qicon/icons *
+recursive-include tablerqicon *.pyi
+recursive-include tablerqicon/icons *

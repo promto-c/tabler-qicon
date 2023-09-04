@@ -1,4 +1,4 @@
-from .extended_tabler_qicon import ExtendedTablerQIcon
+from .extended_tablerqicon import ExtendedTablerQIcon
 
 def use_backend(lib_name: str = None) -> None: ...
 

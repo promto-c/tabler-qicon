@@ -1,6 +1,7 @@
 # Standard Library Imports
 # ------------------------
 import os
+from pathlib import Path
 
 # Related Third Party Imports
 # ---------------------------
@@ -10,7 +11,7 @@ from PyQt5 import QtGui, QtWidgets
 # Local Imports
 # -------------
 os.environ['QT_API'] = 'PyQt5'
-from tabler_qicon import TablerQIcon
+from tablerqicon import TablerQIcon
 
 
 # Fixture Definition
@@ -45,7 +46,7 @@ class TestTablerQIcon(object):
         """
         # Put the name of one icon from your directory here.
         icon_path = tabler_qicon_instance.get_icon_path('users')
-        assert isinstance(icon_path, str)
+        assert isinstance(icon_path, Path)
         assert os.path.exists(icon_path)
 
     def test_icon_retrieval_instance(self, qt_application, tabler_qicon_instance):

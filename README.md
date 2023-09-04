@@ -51,7 +51,7 @@ If you're using `qtpy` to maintain compatibility across different PyQt/PySide ba
 import os
 os.environ['QT_API'] = 'PyQt5'  # Change 'PyQt5' to your desired backend
 
-from tabler_qicon import TablerQIcon
+from tablerqicon import TablerQIcon
 
 # ... Additional code ...
 ```
@@ -61,10 +61,10 @@ from tabler_qicon import TablerQIcon
 Alternatively, you can also set the backend directly using the `use_backend` method:
 
 ```python
-import tabler_qicon
-tabler_qicon.use_backend('PyQt5')
+import tablerqicon
+tablerqicon.use_backend('PyQt5')
 
-from tabler_qicon import TablerQIcon
+from tablerqicon import TablerQIcon
 
 # ... Additional code ...
 ```
@@ -75,7 +75,7 @@ Directly access icons with default properties:
 
 ```python
 from PyQt5 import QtWidgets
-from tabler_qicon import TablerQIcon
+from tablerqicon import TablerQIcon
 
 # ... Additional code ...
 
@@ -92,7 +92,7 @@ refresh_button.setIcon(TablerQIcon.refresh)
 
 ```python
 from PyQt5 import QtWidgets
-from tabler_qicon import TablerQIcon
+from tablerqicon import TablerQIcon
 
 # ... Additional code ...
 

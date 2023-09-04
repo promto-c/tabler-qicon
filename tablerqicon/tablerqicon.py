@@ -492,7 +492,7 @@ if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
 
     # Create instance
-    tabler_qicon = TablerQIcon()
+    tabler_icon = TablerQIcon()
 
     # Check attribute
-    icon_users = tabler_qicon.users  # output <PyQt5.QtGui.QIcon object at 0x...>
+    icon_users = tabler_icon.users  # output <PyQt5.QtGui.QIcon object at 0x...>
