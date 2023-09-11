@@ -1,7 +1,8 @@
 
 # Tabler QIcon
 
-![GitHub](https://img.shields.io/github/license/promto-c/tabler-qicon)
+[![GitHub](https://img.shields.io/github/license/promto-c/tabler-qicon)](https://github.com/promto-c/tabler-qicon/blob/main/LICENSE)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-blue.svg)](https://github.com/promto-c/tabler-qicon)
 
 `Tabler QIcon` is a Python package that provides easy access to [Tabler Icons](https://tabler-icons.io/) [[Preview]](https://tabler-icons.io/) [[GitHub]](https://github.com/tabler/tabler-icons) for PyQt and PySide applications. It uses SVGs from Tabler Icons and converts them into QIcon objects, which can be used in PyQt and PySide applications.
 
@@ -18,16 +19,28 @@ This library also supports icon customization such as changing color, size, view
 
 - **Customizable Icons**: Adjust color, size, view box size, stroke width, and opacity.
 - **Developer-Friendly**: Python stubs enhance code autocompletion and type-checking in your IDE.
+  <details>
+    <summary>Code Autocompletion</summary>
+
+    ![Code Autocompletion](https://raw.githubusercontent.com/promto-c/tabler-qicon/main/screenshots/autocompletion_screenshot.png)
+
+  </details>
 - **Broad Compatibility**: Supports PyQt5, PyQt6, PySide2, and PySide6.
 
 ## 📋 Prerequisites
 
-- Python 3.6 or later
+- Python 3.7 or later
 - One of the following: PyQt5, PyQt6, PySide2, or PySide6
 
 ## 💻 Installation
 
-> The `tabler-qicon` package is not currently on PyPI. Install directly from GitHub:
+You can install `tabler-qicon` from PyPI using pip:
+
+```bash
+pip install tabler-qicon
+```
+
+Alternatively, you can install it directly from the GitHub repository:
 
 ```bash
 pip install git+https://github.com/promto-c/tabler-qicon.git
