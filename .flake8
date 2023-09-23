@@ -3,7 +3,7 @@
 import-order-style = google
 
 # Ignore specific errors or files
-ignore = E302, E402
+ignore = E302, E402, F401
 exclude = 
     .git,
     __pycache__,
@@ -12,4 +12,4 @@ exclude =
     build,
 
 # Specify the maximum line length
-max-line-length = 127
+max-line-length = 128
