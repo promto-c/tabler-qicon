@@ -1,1 +1,1 @@
-from .tablerqicon import TablerQIcon, use_backend
+from .tablerqicon import TablerQIcon, use_backend, __version__
