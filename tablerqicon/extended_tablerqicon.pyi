@@ -100,17 +100,22 @@ class ExtendedTablerQIcon(TablerQIcon):
     album_off: QIcon
     alert_circle: QIcon
     alert_circle_filled: QIcon
+    alert_circle_off: QIcon
     alert_hexagon: QIcon
     alert_hexagon_filled: QIcon
+    alert_hexagon_off: QIcon
     alert_octagon: QIcon
     alert_octagon_filled: QIcon
     alert_small: QIcon
+    alert_small_off: QIcon
     alert_square: QIcon
     alert_square_filled: QIcon
     alert_square_rounded: QIcon
     alert_square_rounded_filled: QIcon
+    alert_square_rounded_off: QIcon
     alert_triangle: QIcon
     alert_triangle_filled: QIcon
+    alert_triangle_off: QIcon
     alien: QIcon
     alien_filled: QIcon
     align_box_bottom_center: QIcon
@@ -393,6 +398,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     augmented_reality: QIcon
     augmented_reality_2: QIcon
     augmented_reality_off: QIcon
+    automatic_gearbox: QIcon
     award: QIcon
     award_filled: QIcon
     award_off: QIcon
@@ -578,6 +584,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     book_download: QIcon
     book_filled: QIcon
     bookmark: QIcon
+    bookmark_ai: QIcon
     bookmark_edit: QIcon
     bookmark_filled: QIcon
     bookmark_minus: QIcon
@@ -838,6 +845,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     brand_matrix: QIcon
     brand_mcdonalds: QIcon
     brand_medium: QIcon
+    brand_meetup: QIcon
     brand_mercedes: QIcon
     brand_messenger: QIcon
     brand_meta: QIcon
@@ -1172,6 +1180,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     caret_up: QIcon
     caret_up_down: QIcon
     caret_up_filled: QIcon
+    car_garage: QIcon
     car_off: QIcon
     carousel_horizontal: QIcon
     carousel_horizontal_filled: QIcon
@@ -1179,6 +1188,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     carousel_vertical_filled: QIcon
     carrot: QIcon
     carrot_off: QIcon
+    car_suv: QIcon
     cart_bolt: QIcon
     cart_cancel: QIcon
     cart_check: QIcon
@@ -1354,6 +1364,17 @@ class ExtendedTablerQIcon(TablerQIcon):
     circle_chevrons_up: QIcon
     circle_chevron_up: QIcon
     circle_dashed: QIcon
+    circle_dashed_number_0: QIcon
+    circle_dashed_number_1: QIcon
+    circle_dashed_number_2: QIcon
+    circle_dashed_number_3: QIcon
+    circle_dashed_number_4: QIcon
+    circle_dashed_number_5: QIcon
+    circle_dashed_number_6: QIcon
+    circle_dashed_number_7: QIcon
+    circle_dashed_number_8: QIcon
+    circle_dashed_number_9: QIcon
+    circle_dashed_x: QIcon
     circle_dot: QIcon
     circle_dot_filled: QIcon
     circle_dotted: QIcon
@@ -1390,6 +1411,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     circle_letter_y: QIcon
     circle_letter_z: QIcon
     circle_minus: QIcon
+    circle_minus_2: QIcon
     circle_number_0: QIcon
     circle_number_1: QIcon
     circle_number_2: QIcon
@@ -1402,6 +1424,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     circle_number_9: QIcon
     circle_off: QIcon
     circle_plus: QIcon
+    circle_plus_2: QIcon
     circle_rectangle: QIcon
     circle_rectangle_off: QIcon
     circles: QIcon
@@ -1506,6 +1529,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     cloud_lock: QIcon
     cloud_lock_open: QIcon
     cloud_minus: QIcon
+    cloud_network: QIcon
     cloud_off: QIcon
     cloud_pause: QIcon
     cloud_pin: QIcon
@@ -2584,6 +2608,8 @@ class ExtendedTablerQIcon(TablerQIcon):
     hexagon_letter_x: QIcon
     hexagon_letter_y: QIcon
     hexagon_letter_z: QIcon
+    hexagon_minus: QIcon
+    hexagon_minus_2: QIcon
     hexagon_number_0: QIcon
     hexagon_number_1: QIcon
     hexagon_number_2: QIcon
@@ -2596,6 +2622,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     hexagon_number_9: QIcon
     hexagon_off: QIcon
     hexagon_plus: QIcon
+    hexagon_plus_2: QIcon
     hexagons: QIcon
     hexagons_off: QIcon
     hierarchy: QIcon
@@ -2935,6 +2962,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     logic_xnor: QIcon
     logic_xor: QIcon
     login: QIcon
+    login_2: QIcon
     logout: QIcon
     logout_2: QIcon
     lollipop: QIcon
@@ -3021,6 +3049,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     map_pin_x: QIcon
     map_plus: QIcon
     map_question: QIcon
+    map_route: QIcon
     map_search: QIcon
     map_share: QIcon
     map_south: QIcon
@@ -3083,6 +3112,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     medical_cross_off: QIcon
     medicine_syrup: QIcon
     meeple: QIcon
+    melon: QIcon
     menorah: QIcon
     menu: QIcon
     menu_2: QIcon
@@ -3350,7 +3380,11 @@ class ExtendedTablerQIcon(TablerQIcon):
     nut: QIcon
     octagon: QIcon
     octagon_filled: QIcon
+    octagon_minus: QIcon
+    octagon_minus_2: QIcon
     octagon_off: QIcon
+    octagon_plus: QIcon
+    octagon_plus_2: QIcon
     octahedron: QIcon
     octahedron_off: QIcon
     octahedron_plus: QIcon
@@ -3392,6 +3426,9 @@ class ExtendedTablerQIcon(TablerQIcon):
     parking: QIcon
     parking_off: QIcon
     password: QIcon
+    password_fingerprint: QIcon
+    password_mobile_phone: QIcon
+    password_user: QIcon
     paw: QIcon
     paw_filled: QIcon
     paw_off: QIcon
@@ -3426,8 +3463,19 @@ class ExtendedTablerQIcon(TablerQIcon):
     pennant_off: QIcon
     pentagon: QIcon
     pentagon_filled: QIcon
+    pentagon_number_0: QIcon
+    pentagon_number_1: QIcon
+    pentagon_number_2: QIcon
+    pentagon_number_3: QIcon
+    pentagon_number_4: QIcon
+    pentagon_number_5: QIcon
+    pentagon_number_6: QIcon
+    pentagon_number_7: QIcon
+    pentagon_number_8: QIcon
+    pentagon_number_9: QIcon
     pentagon_off: QIcon
     pentagon_plus: QIcon
+    pentagon_x: QIcon
     pentagram: QIcon
     pepper: QIcon
     pepper_off: QIcon
@@ -3479,6 +3527,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     photo_square_rounded: QIcon
     photo_star: QIcon
     photo_up: QIcon
+    photo_video: QIcon
     photo_x: QIcon
     physotherapist: QIcon
     piano: QIcon
@@ -4114,6 +4163,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     square_number_9: QIcon
     square_off: QIcon
     square_plus: QIcon
+    square_plus_2: QIcon
     square_root: QIcon
     square_root_2: QIcon
     square_rotated: QIcon
@@ -4176,6 +4226,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     square_rounded_letter_y: QIcon
     square_rounded_letter_z: QIcon
     square_rounded_minus: QIcon
+    square_rounded_minus_2: QIcon
     square_rounded_minus_filled: QIcon
     square_rounded_number_0: QIcon
     square_rounded_number_0_filled: QIcon
@@ -4198,6 +4249,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     square_rounded_number_9: QIcon
     square_rounded_number_9_filled: QIcon
     square_rounded_plus: QIcon
+    square_rounded_plus_2: QIcon
     square_rounded_plus_filled: QIcon
     square_rounded_x: QIcon
     square_rounded_x_filled: QIcon
@@ -4289,6 +4341,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     tag_off: QIcon
     tags: QIcon
     tags_off: QIcon
+    tag_starred: QIcon
     tallymark_1: QIcon
     tallymark_2: QIcon
     tallymark_3: QIcon
@@ -4432,7 +4485,11 @@ class ExtendedTablerQIcon(TablerQIcon):
     triangle_filled: QIcon
     triangle_inverted: QIcon
     triangle_inverted_filled: QIcon
+    triangle_minus: QIcon
+    triangle_minus_2: QIcon
     triangle_off: QIcon
+    triangle_plus: QIcon
+    triangle_plus_2: QIcon
     triangles: QIcon
     triangle_square_circle: QIcon
     triangle_square_circle_filled: QIcon
