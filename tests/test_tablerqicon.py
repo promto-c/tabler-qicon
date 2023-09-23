@@ -74,3 +74,39 @@ class TestTablerQIcon(object):
         """
         with pytest.raises(AttributeError):
             TablerQIcon.users = QtGui.QIcon()
+
+    def test_flip_flop_transformations(self, qt_application, tabler_qicon_instance):
+        """Test the flip and flop transformations on an icon.
+        """
+        # Test flip transformation.
+        icon_flipped1 = tabler_qicon_instance.flip.users
+        assert isinstance(icon_flipped1, QtGui.QIcon)
+        
+        # Test caching for flip transformation.
+        icon_flipped2 = tabler_qicon_instance.flip.users
+        assert icon_flipped1 is icon_flipped2
+
+        # Test flop transformation.
+        icon_flopped1 = tabler_qicon_instance.flop.users
+        assert isinstance(icon_flopped1, QtGui.QIcon)
+
+        # Test caching for flop transformation.
+        icon_flopped2 = tabler_qicon_instance.flop.users
+        assert icon_flopped1 is icon_flopped2
+
+        # Test both flip and flop transformations.
+        icon_flip_flop1 = tabler_qicon_instance.flip.flop.users
+        assert isinstance(icon_flip_flop1, QtGui.QIcon)
+
+        # Test caching for both flip and flop transformations.
+        icon_flip_flop2 = tabler_qicon_instance.flip.flop.users
+        assert icon_flip_flop1 is icon_flip_flop2
+
+        # Test if transformations are reset after retrieving the icon.
+        icon_reset = tabler_qicon_instance.users
+        assert isinstance(icon_reset, QtGui.QIcon)
+
+        # Ensure that the icon without transformations is not cached with transformations.
+        assert icon_reset is not icon_flip_flop1
+        assert icon_reset is not icon_flopped1
+        assert icon_reset is not icon_flipped1

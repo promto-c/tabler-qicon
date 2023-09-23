@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - 
 
-## [0.2.0] - 2023-09-24
+## [0.2.2] - 2023-09-24
 ### Added
 - Flip and flop transformations can be applied to icons easily.
 

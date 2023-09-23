@@ -1,7 +1,8 @@
-__version__ = '0.2.1'
+__version__ = '0.2.2'
 
 # Standard Library Imports
 # ------------------------
+from functools import lru_cache
 import importlib
 import keyword
 import logging
@@ -17,7 +18,6 @@ from xml.etree import ElementTree
 # Declare the variables for the Qt libraries as None initially
 QtCore = QtGui = QtWidgets = QtSvg = None
 
-
 # Define the mappings of API names
 API_NAMES = {
     'pyqt5': 'PyQt5',
@@ -29,11 +29,13 @@ API_NAMES = {
 # Check for the QT_API environment variable
 API = os.environ.get('QT_API', '').lower()
 
+
 def use_backend(lib_name: Optional[str] = None):
     """Sets the preferred Qt library specified by the user.
 
     This function attempts to import QtCore, QtGui, QtWidgets, and QtSvg from the specified
-    library. If no library is specified, it will try to import the libraries based on the QT_API environment variable or default order.
+    library. If no library is specified, it will try to import the libraries based on
+    the QT_API environment variable or default order.
 
     Args:
         lib_name (str, optional): The preferred Qt library. If not provided, the function defaults to the
@@ -55,8 +57,7 @@ def use_backend(lib_name: Optional[str] = None):
             # If QtSvg is not available, log a warning and set QtSvg as None
             QtSvg = None
             logging.warning(
-                f'The QtSvg module could not be imported from {lib_name}. SVG icon functionality may not be available.'
-            )
+                f'The QtSvg module could not be imported from {lib_name}. SVG icon functionality may not be available.')
         return
 
     # If no lib_name is provided and QT_API is set, use that
@@ -83,12 +84,11 @@ def use_backend(lib_name: Optional[str] = None):
 
     # If none of the libraries could be imported, raise an ImportError
     raise ImportError(
-        'No Qt libraries could be imported. Please ensure that at least one of PyQt6, PyQt5, PySide6, or PySide2 is installed.'
-    )
+        'No Qt libraries could be imported. Please ensure that at least one of PyQt6, PyQt5, PySide6, or PySide2 is installed.')
+
 
 # Call the use_backend function to ensure the right backend is set
 use_backend()
-
 
 # Constants Definition
 # --------------------
@@ -147,8 +147,7 @@ class TablerQIconMeta(type):
             AttributeError: Raised when an attempt is made to set any attribute.
         """
         # No attributes can be set in this metaclass
-        raise AttributeError(
-            f"Cannot set attribute '{name}'. This attribute is not allowed.")
+        raise AttributeError(f"Cannot set attribute '{name}'. This attribute is not allowed.")
 
     # Class Methods
     # -------------
@@ -170,17 +169,13 @@ class TablerQIconMeta(type):
         # Ensure the specified directory exists before proceeding
         if not os.path.isdir(TABLER_ICONS_SVG_DIRECTORY):
             # If the directory does not exist, raise a FileNotFoundError with a descriptive message
-            raise FileNotFoundError(
-                f"Directory {TABLER_ICONS_SVG_DIRECTORY} does not exist")
+            raise FileNotFoundError(f"Directory {TABLER_ICONS_SVG_DIRECTORY} does not exist")
 
         # Create an empty dictionary to store the icon name and path
         icon_name_to_path_dict = dict()
 
         # Get a list of all SVG files in the TABLER_ICONS_SVG_DIRECTORY
-        svg_files = [
-            file for file in os.listdir(TABLER_ICONS_SVG_DIRECTORY)
-            if file.endswith('.svg')
-        ]
+        svg_files = [file for file in os.listdir(TABLER_ICONS_SVG_DIRECTORY) if file.endswith('.svg')]
 
         # Compile the regex pattern once to avoid recompilation in each loop iteration
         pattern = re.compile(r'[\W_]+')
@@ -209,7 +204,9 @@ class TablerQIconMeta(type):
                    size: int = 24,
                    view_box_size: int = 24,
                    stroke_width: int = 2,
-                   opacity: float = 1.0) -> QtGui.QIcon:
+                   opacity: float = 1.0,
+                   flip: bool = False,
+                   flop: bool = False) -> QtGui.QIcon:
         """Retrieves the icon as a QIcon object.
 
         Retrieves the path of the specified icon, checks if the path points to an
@@ -222,6 +219,8 @@ class TablerQIconMeta(type):
             view_box_size (int, optional): The size of the icon's view box. Defaults to 24.
             stroke_width (int, optional): The width of the icon's stroke. Defaults to 2.
             opacity (float, optional): The opacity of the icon. Defaults to 1.0.
+            flip (bool, optional): If True, the icon will be flipped horizontally. Defaults to False.
+            flop (bool, optional): If True, the icon will be flipped vertically. Defaults to False.
 
         Returns:
             QtGui.QIcon : QIcon object for the given icon name.
@@ -278,8 +277,7 @@ class TablerQIconMeta(type):
             pixmap = QtGui.QPixmap(svg_icon_path)
 
             # Set the size of the pixmap
-            pixmap = pixmap.scaled(size, size,
-                                   QtCore.Qt.AspectRatioMode.KeepAspectRatio,
+            pixmap = pixmap.scaled(size, size, QtCore.Qt.AspectRatioMode.KeepAspectRatio,
                                    QtCore.Qt.TransformationMode.SmoothTransformation)
 
             # Create a QPainter object to draw on the QPixmap
@@ -288,12 +286,20 @@ class TablerQIconMeta(type):
         # Set the opacity of the icon
         painter.setOpacity(opacity)
         # Set the composition mode to "SourceIn" to composite the color on the icon
-        painter.setCompositionMode(
-            QtGui.QPainter.CompositionMode.CompositionMode_SourceIn)
+        painter.setCompositionMode(QtGui.QPainter.CompositionMode.CompositionMode_SourceIn)
         # Fill the pixmap with the specified color
         painter.fillRect(pixmap.rect(), color)
         # End the painter
         painter.end()
+
+        # Check if the icon needs to be flipped (horizontally) or flopped (vertically)
+        if flip or flop:
+            transform = QtGui.QTransform()
+            if flip:
+                transform.scale(-1, 1)
+            if flop:
+                transform.scale(1, -1)
+            pixmap = pixmap.transformed(transform)
 
         # Create a QIcon object using the rendered image
         icon = QtGui.QIcon(pixmap)
@@ -315,6 +321,35 @@ class TablerQIcon(metaclass=TablerQIconMeta):
         _stroke_width (int): The width of the icon's stroke.
         _opacity (float): The opacity of the icon.
     """
+
+    class _Proxy:
+        """Initializes the proxy object with the parent TablerQIcon instance and states for flip and flop transformations.
+
+        Args:
+            parent (TablerQIcon): The parent TablerQIcon instance.
+            flip (bool, optional): Initial state for horizontal flip. Defaults to False.
+            flop (bool, optional): Initial state for vertical flip. Defaults to False.
+        """
+
+        def __init__(self, parent, flip=False, flop=False):
+            self._parent = parent
+            self._flip = flip
+            self._flop = flop
+
+        @property
+        def flip(self):
+            """Return a new proxy object with flip set to True"""
+            return TablerQIcon._Proxy(self._parent, flip=not self._flip, flop=self._flop)
+
+        @property
+        def flop(self):
+            """Return a new proxy object with flop set to True"""
+            return TablerQIcon._Proxy(self._parent, flip=self._flip, flop=not self._flop)
+
+        def __getattr__(self, name: str):
+            icon = self._parent.get_qicon(name, flip=self._flip, flop=self._flop)
+            self._flip = self._flop = False  # reset flip and flop states
+            return icon
 
     # Initialization and Setup
     # ------------------------
@@ -339,9 +374,6 @@ class TablerQIcon(metaclass=TablerQIconMeta):
         self._view_box_size = view_box_size
         self._stroke_width = stroke_width
         self._opacity = opacity
-
-        # Create an empty dictionary to store icons
-        self._icon_cache_dict = dict()
 
     # Special Methods
     # ---------------
@@ -394,38 +426,34 @@ class TablerQIcon(metaclass=TablerQIconMeta):
                 to an icon name accessed via __getattr__.
         """
         # Only allow attributes that are already defined to be set
-        if name in ('_color', '_size', '_view_box_size', '_stroke_width', '_opacity',
-                    '_icon_cache_dict'):
+        if name in ('_color', '_size', '_view_box_size', '_stroke_width', '_opacity'):
             super().__setattr__(name, value)
         else:
-            raise AttributeError(
-                f"Cannot set attribute '{name}'. This attribute is not allowed.")
+            raise AttributeError(f"Cannot set attribute '{name}'. This attribute is not allowed.")
 
     # Extended Methods
     # ----------------
-    def get_qicon(self, name: str) -> QtGui.QIcon:
+    @lru_cache(maxsize=128)
+    def get_qicon(self, name: str, flip: bool = False, flop: bool = False) -> QtGui.QIcon:
         """Get the icon as a QIcon object using a method.
 
         Args:
             name (str): The name of the icon to retrieve.
+            flip (bool, optional): If True, the icon will be flipped horizontally. Defaults to False.
+            flop (bool, optional): If True, the icon will be flipped vertically. Defaults to False.
 
         Returns:
             QtGui.QIcon : QIcon object for the given icon name
         """
-        # Check if the icon already exists in the cache
-        if name in self._icon_cache_dict:
-            return self._icon_cache_dict[name]
-
         # Create the QIcon object using the metaclass's method, with the instance's arguments
         icon = self.__class__._get_qicon(name=name,
                                          color=self._color,
                                          size=self._size,
                                          view_box_size=self._view_box_size,
                                          stroke_width=self._stroke_width,
-                                         opacity=self._opacity)
-
-        # Cache the created QIcon object
-        self._icon_cache_dict[name] = icon
+                                         opacity=self._opacity,
+                                         flip=flip,
+                                         flop=flop)
 
         # Return the icon
         return icon
@@ -481,6 +509,18 @@ class TablerQIcon(metaclass=TablerQIconMeta):
         # Return the path corresponding to the provided icon name
         return icon_name_to_path_dict.get(name)
 
+    # Properties
+    # ----------
+    @property
+    def flip(self):
+        """Return a proxy object with flip set to True"""
+        return self._Proxy(self, flip=True)
+
+    @property
+    def flop(self):
+        """Return a proxy object with flop set to True"""
+        return self._Proxy(self, flop=True)
+
 
 # Main Execution
 # --------------
@@ -494,7 +534,14 @@ if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
 
     # Create instance
-    tabler_icon = TablerQIcon()
+    tabler_icon = TablerQIcon(opacity=0.8)
 
-    # Check attribute
-    icon_users = tabler_icon.users  # output <PyQt5.QtGui.QIcon object at 0x...>
+    # Create a QPushButton and set the icon of the button to the flipped 'player_play' icon
+    play_backward_button = QtWidgets.QPushButton('Play Backward')
+    play_backward_button.setIcon(tabler_icon.flip.player_play)
+
+    # Show the button
+    play_backward_button.show()
+
+    # Execute the application
+    sys.exit(app.exec())
