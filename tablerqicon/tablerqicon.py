@@ -274,7 +274,7 @@ class TablerQIconMeta(type):
 
         else:
             # Load the SVG file as a QPixmap
-            pixmap = QtGui.QPixmap(svg_icon_path)
+            pixmap = QtGui.QPixmap(str(svg_icon_path))
 
             # Set the size of the pixmap
             pixmap = pixmap.scaled(size, size, QtCore.Qt.AspectRatioMode.KeepAspectRatio,
