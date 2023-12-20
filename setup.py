@@ -8,6 +8,7 @@ setup(
     long_description=open('README.md', encoding='utf-8').read(),
     long_description_content_type='text/markdown',
     author='Charin Rungchaowarat',
+    author_email='prommm01@gmail.com',
     url='https://github.com/promto-c/tabler-qicon',
     packages=find_packages(exclude=['tests*']),
     include_package_data=True,
