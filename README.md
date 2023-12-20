@@ -9,7 +9,7 @@
 
 This package also supports icon customization such as changing color, size, view box size, stroke width, opacity, and applying transformations like flip and flop.
 
-`Tabler QIcon v0.2.2` is currently synced with [tabler-icons](https://github.com/tabler/tabler-icons) version 2.35.0. Please refer to the [update.log](./tablerqicon/icons/update.log) file for more details on the last sync.
+`Tabler QIcon v0.2.3` is currently synced with [tabler-icons](https://github.com/tabler/tabler-icons) version 2.44.0. Please refer to the [update.log](./tablerqicon/icons/update.log) file for more details on the last sync.
 <details>
   <summary><b>Preview icons</b></summary>
 
@@ -24,7 +24,7 @@ This package also supports icon customization such as changing color, size, view
   Code Autocompletion
     ![Code Autocompletion](https://raw.githubusercontent.com/promto-c/tabler-qicon/main/screenshots/autocompletion_screenshot.png)
 - **Broad Compatibility**: Supports PyQt5, PyQt6, PySide2, and PySide6.
-- **Transformation Features**: Flip and flop transformations can be applied to icons easily. (introduced in v0.2.0)
+- **Transformation Features**: Flip and flop transformations can be applied to icons easily. (introduced in v0.2.2)
 
 ## 📋 Prerequisites
 

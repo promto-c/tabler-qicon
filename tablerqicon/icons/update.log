@@ -1,6 +1,6 @@
 repository: https://github.com/tabler/tabler-icons.git
 branch: master
-synced: 2023-09-23 08:11:25 UTC
-icons_before: 4660
-commit: 53a308b Release 2.35.0
-icons_after: 4717
+synced: 2023-12-20 19:30:29 UTC
+icons_before: 4717
+commit: ffed949 Release 2.44.0
+icons_after: 4932

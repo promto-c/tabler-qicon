@@ -88,6 +88,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     air_conditioning_disabled: QIcon
     air_traffic_control: QIcon
     alarm: QIcon
+    alarm_average: QIcon
     alarm_filled: QIcon
     alarm_minus: QIcon
     alarm_minus_filled: QIcon
@@ -285,6 +286,8 @@ class ExtendedTablerQIcon(TablerQIcon):
     arrow_loop_right: QIcon
     arrow_loop_right_2: QIcon
     arrow_merge: QIcon
+    arrow_merge_alt_left: QIcon
+    arrow_merge_alt_right: QIcon
     arrow_merge_both: QIcon
     arrow_merge_left: QIcon
     arrow_merge_right: QIcon
@@ -407,6 +410,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     axis_y: QIcon
     baby_bottle: QIcon
     baby_carriage: QIcon
+    background: QIcon
     backhoe: QIcon
     backpack: QIcon
     backpack_off: QIcon
@@ -509,6 +513,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     beach_off: QIcon
     bed: QIcon
     bed_filled: QIcon
+    bed_flat: QIcon
     bed_off: QIcon
     beer: QIcon
     beer_filled: QIcon
@@ -561,6 +566,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     bleach_chlorine: QIcon
     bleach_no_chlorine: QIcon
     bleach_off: QIcon
+    blender: QIcon
     blockquote: QIcon
     bluetooth: QIcon
     bluetooth_connected: QIcon
@@ -569,6 +575,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     blur: QIcon
     blur_off: QIcon
     bmp: QIcon
+    body_scan: QIcon
     bold: QIcon
     bold_off: QIcon
     bolt: QIcon
@@ -600,7 +607,10 @@ class ExtendedTablerQIcon(TablerQIcon):
     book_upload: QIcon
     border_all: QIcon
     border_bottom: QIcon
+    border_corner_pill: QIcon
+    border_corner_rounded: QIcon
     border_corners: QIcon
+    border_corner_square: QIcon
     border_horizontal: QIcon
     border_inner: QIcon
     border_left: QIcon
@@ -662,6 +672,8 @@ class ExtendedTablerQIcon(TablerQIcon):
     braces: QIcon
     braces_off: QIcon
     brackets: QIcon
+    brackets_angle: QIcon
+    brackets_angle_off: QIcon
     brackets_contain: QIcon
     brackets_contain_end: QIcon
     brackets_contain_start: QIcon
@@ -691,6 +703,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     brand_apple_podcast: QIcon
     brand_appstore: QIcon
     brand_asana: QIcon
+    brand_auth0: QIcon
     brand_aws: QIcon
     brand_azure: QIcon
     brand_backbone: QIcon
@@ -801,6 +814,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     brand_google_analytics: QIcon
     brand_google_big_query: QIcon
     brand_google_drive: QIcon
+    brand_google_filled: QIcon
     brand_google_fit: QIcon
     brand_google_home: QIcon
     brand_google_maps: QIcon
@@ -825,6 +839,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     brand_itch: QIcon
     brand_javascript: QIcon
     brand_juejin: QIcon
+    brand_kako_talk: QIcon
     brand_kbin: QIcon
     brand_kick: QIcon
     brand_kickstarter: QIcon
@@ -883,6 +898,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     brand_pagekit: QIcon
     brand_parsinta: QIcon
     brand_patreon: QIcon
+    brand_patreon_filled: QIcon
     brand_paypal: QIcon
     brand_paypal_filled: QIcon
     brand_paypay: QIcon
@@ -895,6 +911,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     brand_pocket: QIcon
     brand_polymer: QIcon
     brand_powershell: QIcon
+    brand_printables: QIcon
     brand_prisma: QIcon
     brand_producthunt: QIcon
     brand_pushbullet: QIcon
@@ -955,6 +972,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     brand_telegram: QIcon
     brand_terraform: QIcon
     brand_tether: QIcon
+    brand_thingiverse: QIcon
     brand_threads: QIcon
     brand_threejs: QIcon
     brand_tidal: QIcon
@@ -1028,6 +1046,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     bread_off: QIcon
     briefcase: QIcon
     briefcase_2: QIcon
+    briefcase_filled: QIcon
     briefcase_off: QIcon
     brightness: QIcon
     brightness_2: QIcon
@@ -1050,6 +1069,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     bucket_droplet: QIcon
     bucket_off: QIcon
     bug: QIcon
+    bug_filled: QIcon
     bug_off: QIcon
     building: QIcon
     building_arch: QIcon
@@ -1082,6 +1102,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     bulb_filled: QIcon
     bulb_off: QIcon
     bulldozer: QIcon
+    burger: QIcon
     bus: QIcon
     businessplan: QIcon
     bus_off: QIcon
@@ -1099,9 +1120,11 @@ class ExtendedTablerQIcon(TablerQIcon):
     calendar_bolt: QIcon
     calendar_cancel: QIcon
     calendar_check: QIcon
+    calendar_clock: QIcon
     calendar_code: QIcon
     calendar_cog: QIcon
     calendar_dollar: QIcon
+    calendar_dot: QIcon
     calendar_down: QIcon
     calendar_due: QIcon
     calendar_event: QIcon
@@ -1109,18 +1132,23 @@ class ExtendedTablerQIcon(TablerQIcon):
     calendar_filled: QIcon
     calendar_heart: QIcon
     calendar_minus: QIcon
+    calendar_month: QIcon
     calendar_off: QIcon
     calendar_pause: QIcon
     calendar_pin: QIcon
     calendar_plus: QIcon
     calendar_question: QIcon
     calendar_repeat: QIcon
+    calendar_sad: QIcon
     calendar_search: QIcon
     calendar_share: QIcon
+    calendar_smile: QIcon
     calendar_star: QIcon
     calendar_stats: QIcon
     calendar_time: QIcon
     calendar_up: QIcon
+    calendar_user: QIcon
+    calendar_week: QIcon
     calendar_x: QIcon
     camera: QIcon
     camera_bolt: QIcon
@@ -1175,10 +1203,12 @@ class ExtendedTablerQIcon(TablerQIcon):
     caret_left: QIcon
     caret_left_filled: QIcon
     caret_left_right: QIcon
+    caret_left_right_filled: QIcon
     caret_right: QIcon
     caret_right_filled: QIcon
     caret_up: QIcon
     caret_up_down: QIcon
+    caret_up_down_filled: QIcon
     caret_up_filled: QIcon
     car_garage: QIcon
     car_off: QIcon
@@ -1221,6 +1251,8 @@ class ExtendedTablerQIcon(TablerQIcon):
     category: QIcon
     category_2: QIcon
     category_filled: QIcon
+    category_minus: QIcon
+    category_plus: QIcon
     ce: QIcon
     cell: QIcon
     cell_signal_1: QIcon
@@ -1261,7 +1293,9 @@ class ExtendedTablerQIcon(TablerQIcon):
     chart_dots: QIcon
     chart_dots_2: QIcon
     chart_dots_3: QIcon
+    chart_dots_filled: QIcon
     chart_grid_dots: QIcon
+    chart_grid_dots_filled: QIcon
     chart_histogram: QIcon
     chart_infographic: QIcon
     chart_line: QIcon
@@ -1320,6 +1354,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     chevron_up_left: QIcon
     chevron_up_right: QIcon
     chisel: QIcon
+    christmas_ball: QIcon
     christmas_tree: QIcon
     christmas_tree_off: QIcon
     circle: QIcon
@@ -1561,14 +1596,24 @@ class ExtendedTablerQIcon(TablerQIcon):
     coffin: QIcon
     coin: QIcon
     coin_bitcoin: QIcon
+    coin_bitcoin_filled: QIcon
     coin_euro: QIcon
+    coin_euro_filled: QIcon
+    coin_filled: QIcon
     coin_monero: QIcon
+    coin_monero_filled: QIcon
     coin_off: QIcon
     coin_pound: QIcon
+    coin_pound_filled: QIcon
     coin_rupee: QIcon
+    coin_rupee_filled: QIcon
     coins: QIcon
+    coin_taka: QIcon
+    coin_taka_filled: QIcon
     coin_yen: QIcon
+    coin_yen_filled: QIcon
     coin_yuan: QIcon
+    coin_yuan_filled: QIcon
     color_filter: QIcon
     color_picker: QIcon
     color_picker_off: QIcon
@@ -1586,6 +1631,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     command: QIcon
     command_off: QIcon
     compass: QIcon
+    compass_filled: QIcon
     compass_off: QIcon
     components: QIcon
     components_off: QIcon
@@ -1607,13 +1653,17 @@ class ExtendedTablerQIcon(TablerQIcon):
     cookie_man: QIcon
     cookie_off: QIcon
     copy: QIcon
+    copy_check: QIcon
     copyleft: QIcon
     copyleft_filled: QIcon
     copyleft_off: QIcon
+    copy_minus: QIcon
     copy_off: QIcon
+    copy_plus: QIcon
     copyright: QIcon
     copyright_filled: QIcon
     copyright_off: QIcon
+    copy_x: QIcon
     corner_down_left: QIcon
     corner_down_left_double: QIcon
     corner_down_right: QIcon
@@ -1643,9 +1693,19 @@ class ExtendedTablerQIcon(TablerQIcon):
     creative_commons_sa: QIcon
     creative_commons_zero: QIcon
     credit_card: QIcon
+    credit_card_filled: QIcon
     credit_card_off: QIcon
+    credit_card_pay: QIcon
+    credit_card_refund: QIcon
     cricket: QIcon
     crop: QIcon
+    crop_1_1: QIcon
+    crop_16_9: QIcon
+    crop_3_2: QIcon
+    crop_5_4: QIcon
+    crop_7_5: QIcon
+    crop_landscape: QIcon
+    crop_portrait: QIcon
     cross: QIcon
     cross_filled: QIcon
     crosshair: QIcon
@@ -1727,6 +1787,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     currency_tenge: QIcon
     currency_tugrik: QIcon
     currency_won: QIcon
+    currency_xrp: QIcon
     currency_yen: QIcon
     currency_yen_off: QIcon
     currency_yuan: QIcon
@@ -1764,6 +1825,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     dental_broken: QIcon
     dental_off: QIcon
     deselect: QIcon
+    desk: QIcon
     details: QIcon
     details_off: QIcon
     device_airpods: QIcon
@@ -1802,6 +1864,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     device_gamepad: QIcon
     device_game_pad: QIcon
     device_gamepad_2: QIcon
+    device_gamepad_3: QIcon
     device_heart_monitor: QIcon
     device_heart_monitor_filled: QIcon
     device_imac: QIcon
@@ -2008,6 +2071,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     dice_filled: QIcon
     dimensions: QIcon
     direction: QIcon
+    direction_arrows: QIcon
     direction_horizontal: QIcon
     directions: QIcon
     direction_sign: QIcon
@@ -2079,6 +2143,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     dual_screen: QIcon
     ear: QIcon
     ear_off: QIcon
+    ear_scan: QIcon
     ease_in: QIcon
     ease_in_control_point: QIcon
     ease_in_out: QIcon
@@ -2164,6 +2229,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     face_mask: QIcon
     face_mask_off: QIcon
     fall: QIcon
+    favicon: QIcon
     feather: QIcon
     feather_off: QIcon
     fence: QIcon
@@ -2205,6 +2271,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     file_like: QIcon
     file_minus: QIcon
     file_music: QIcon
+    file_neutral: QIcon
     file_off: QIcon
     file_orientation: QIcon
     file_pencil: QIcon
@@ -2215,11 +2282,13 @@ class ExtendedTablerQIcon(TablerQIcon):
     file_report: QIcon
     file_rss: QIcon
     files: QIcon
+    file_sad: QIcon
     file_scissors: QIcon
     file_search: QIcon
     file_settings: QIcon
     file_shredder: QIcon
     file_signal: QIcon
+    file_smile: QIcon
     files_off: QIcon
     file_spreadsheet: QIcon
     file_stack: QIcon
@@ -2285,6 +2354,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     filter_x: QIcon
     fingerprint: QIcon
     fingerprint_off: QIcon
+    fingerprint_scan: QIcon
     fire_extinguisher: QIcon
     fire_hydrant: QIcon
     fire_hydrant_off: QIcon
@@ -2330,7 +2400,9 @@ class ExtendedTablerQIcon(TablerQIcon):
     flare: QIcon
     flask: QIcon
     flask_2: QIcon
+    flask_2_filled: QIcon
     flask_2_off: QIcon
+    flask_filled: QIcon
     flask_off: QIcon
     flip_flops: QIcon
     flip_horizontal: QIcon
@@ -2365,6 +2437,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     folder_pin: QIcon
     folder_plus: QIcon
     folder_question: QIcon
+    folder_root: QIcon
     folders: QIcon
     folder_search: QIcon
     folder_share: QIcon
@@ -2399,6 +2472,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     function: QIcon
     function_filled: QIcon
     function_off: QIcon
+    galaxy: QIcon
     garden_cart: QIcon
     garden_cart_off: QIcon
     gas_station: QIcon
@@ -2436,6 +2510,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     gift: QIcon
     gift_card: QIcon
     gift_card_filled: QIcon
+    gift_filled: QIcon
     gift_off: QIcon
     git_branch: QIcon
     git_branch_deleted: QIcon
@@ -2462,11 +2537,16 @@ class ExtendedTablerQIcon(TablerQIcon):
     gradienter: QIcon
     grain: QIcon
     graph: QIcon
+    graph_filled: QIcon
     graph_off: QIcon
     grave: QIcon
     grave_2: QIcon
+    grid_3x3: QIcon
+    grid_4x4: QIcon
     grid_dots: QIcon
+    grid_goldenratio: QIcon
     grid_pattern: QIcon
+    grid_scan: QIcon
     grill: QIcon
     grill_fork: QIcon
     grill_off: QIcon
@@ -2476,6 +2556,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     growth: QIcon
     guitar_pick: QIcon
     guitar_pick_filled: QIcon
+    gymnastics: QIcon
     h_1: QIcon
     h_2: QIcon
     h_3: QIcon
@@ -2665,7 +2746,10 @@ class ExtendedTablerQIcon(TablerQIcon):
     home_up: QIcon
     home_x: QIcon
     horse: QIcon
+    horseshoe: QIcon
     horse_toy: QIcon
+    hospital: QIcon
+    hospital_circle: QIcon
     hotel_service: QIcon
     hourglass: QIcon
     hourglass_empty: QIcon
@@ -2809,6 +2893,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     layout_bottombar_expand: QIcon
     layout_bottombar_expand_filled: QIcon
     layout_bottombar_filled: QIcon
+    layout_bottombar_inactive: QIcon
     layout_cards: QIcon
     layout_collage: QIcon
     layout_columns: QIcon
@@ -2826,9 +2911,11 @@ class ExtendedTablerQIcon(TablerQIcon):
     layout_navbar_expand: QIcon
     layout_navbar_expand_filled: QIcon
     layout_navbar_filled: QIcon
+    layout_navbar_inactive: QIcon
     layout_off: QIcon
     layout_rows: QIcon
     layout_sidebar: QIcon
+    layout_sidebar_inactive: QIcon
     layout_sidebar_left_collapse: QIcon
     layout_sidebar_left_collapse_filled: QIcon
     layout_sidebar_left_expand: QIcon
@@ -2838,6 +2925,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     layout_sidebar_right_collapse_filled: QIcon
     layout_sidebar_right_expand: QIcon
     layout_sidebar_right_expand_filled: QIcon
+    layout_sidebar_right_inactive: QIcon
     leaf: QIcon
     leaf_off: QIcon
     lego: QIcon
@@ -2845,36 +2933,66 @@ class ExtendedTablerQIcon(TablerQIcon):
     lemon: QIcon
     lemon_2: QIcon
     letter_a: QIcon
+    letter_a_small: QIcon
     letter_b: QIcon
+    letter_b_small: QIcon
     letter_c: QIcon
     letter_case: QIcon
     letter_case_lower: QIcon
     letter_case_toggle: QIcon
     letter_case_upper: QIcon
+    letter_c_small: QIcon
     letter_d: QIcon
+    letter_d_small: QIcon
     letter_e: QIcon
+    letter_e_small: QIcon
     letter_f: QIcon
+    letter_f_small: QIcon
     letter_g: QIcon
+    letter_g_small: QIcon
     letter_h: QIcon
+    letter_h_small: QIcon
     letter_i: QIcon
+    letter_i_small: QIcon
     letter_j: QIcon
+    letter_j_small: QIcon
     letter_k: QIcon
+    letter_k_small: QIcon
     letter_l: QIcon
+    letter_l_small: QIcon
     letter_m: QIcon
+    letter_m_small: QIcon
     letter_n: QIcon
+    letter_n_small: QIcon
     letter_o: QIcon
+    letter_o_small: QIcon
     letter_p: QIcon
+    letter_p_small: QIcon
     letter_q: QIcon
+    letter_q_small: QIcon
     letter_r: QIcon
+    letter_r_small: QIcon
     letter_s: QIcon
     letter_spacing: QIcon
+    letter_s_small: QIcon
     letter_t: QIcon
+    letter_t_small: QIcon
     letter_u: QIcon
+    letter_u_small: QIcon
     letter_v: QIcon
+    letter_v_small: QIcon
     letter_w: QIcon
+    letter_w_small: QIcon
     letter_x: QIcon
+    letter_x_small: QIcon
     letter_y: QIcon
+    letter_y_small: QIcon
     letter_z: QIcon
+    letter_z_small: QIcon
+    library: QIcon
+    library_minus: QIcon
+    library_photo: QIcon
+    library_plus: QIcon
     license: QIcon
     license_off: QIcon
     lifebuoy: QIcon
@@ -2884,8 +3002,11 @@ class ExtendedTablerQIcon(TablerQIcon):
     line_dashed: QIcon
     line_dotted: QIcon
     line_height: QIcon
+    line_scan: QIcon
     link: QIcon
+    link_minus: QIcon
     link_off: QIcon
+    link_plus: QIcon
     list: QIcon
     list_check: QIcon
     list_details: QIcon
@@ -2974,6 +3095,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     macro: QIcon
     macro_off: QIcon
     magnet: QIcon
+    magnetic: QIcon
     magnet_off: QIcon
     mail: QIcon
     mail_ai: QIcon
@@ -3182,6 +3304,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     message_pin: QIcon
     message_plus: QIcon
     message_question: QIcon
+    message_reply: QIcon
     message_report: QIcon
     messages: QIcon
     message_search: QIcon
@@ -3192,6 +3315,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     message_x: QIcon
     meteor: QIcon
     meteor_off: QIcon
+    metronome: QIcon
     michelin_bib_gourmand: QIcon
     michelin_star: QIcon
     michelin_star_green: QIcon
@@ -3237,8 +3361,10 @@ class ExtendedTablerQIcon(TablerQIcon):
     mood_heart: QIcon
     mood_kid: QIcon
     mood_kid_filled: QIcon
+    mood_look_down: QIcon
     mood_look_left: QIcon
     mood_look_right: QIcon
+    mood_look_up: QIcon
     mood_minus: QIcon
     mood_nerd: QIcon
     mood_nervous: QIcon
@@ -3247,6 +3373,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     mood_off: QIcon
     mood_pin: QIcon
     mood_plus: QIcon
+    mood_puzzled: QIcon
     mood_sad: QIcon
     mood_sad_2: QIcon
     mood_sad_dizzy: QIcon
@@ -3328,6 +3455,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     navigation_discount: QIcon
     navigation_dollar: QIcon
     navigation_down: QIcon
+    navigation_east: QIcon
     navigation_exclamation: QIcon
     navigation_filled: QIcon
     navigation_heart: QIcon
@@ -3340,8 +3468,11 @@ class ExtendedTablerQIcon(TablerQIcon):
     navigation_question: QIcon
     navigation_search: QIcon
     navigation_share: QIcon
+    navigation_south: QIcon
     navigation_star: QIcon
+    navigation_top: QIcon
     navigation_up: QIcon
+    navigation_west: QIcon
     navigation_x: QIcon
     needle: QIcon
     needle_thread: QIcon
@@ -3366,15 +3497,45 @@ class ExtendedTablerQIcon(TablerQIcon):
     notification_off: QIcon
     number: QIcon
     number_0: QIcon
+    number_0_small: QIcon
     number_1: QIcon
+    number_10_small: QIcon
+    number_11_small: QIcon
+    number_12_small: QIcon
+    number_13_small: QIcon
+    number_14_small: QIcon
+    number_15_small: QIcon
+    number_16_small: QIcon
+    number_17_small: QIcon
+    number_18_small: QIcon
+    number_19_small: QIcon
+    number_1_small: QIcon
     number_2: QIcon
+    number_20_small: QIcon
+    number_21_small: QIcon
+    number_22_small: QIcon
+    number_23_small: QIcon
+    number_24_small: QIcon
+    number_25_small: QIcon
+    number_26_small: QIcon
+    number_27_small: QIcon
+    number_28_small: QIcon
+    number_29_small: QIcon
+    number_2_small: QIcon
     number_3: QIcon
+    number_3_small: QIcon
     number_4: QIcon
+    number_4_small: QIcon
     number_5: QIcon
+    number_5_small: QIcon
     number_6: QIcon
+    number_6_small: QIcon
     number_7: QIcon
+    number_7_small: QIcon
     number_8: QIcon
+    number_8_small: QIcon
     number_9: QIcon
+    number_9_small: QIcon
     numbers: QIcon
     nurse: QIcon
     nut: QIcon
@@ -3424,6 +3585,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     parentheses: QIcon
     parentheses_off: QIcon
     parking: QIcon
+    parking_circle: QIcon
     parking_off: QIcon
     password: QIcon
     password_fingerprint: QIcon
@@ -3518,6 +3680,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     photo_pin: QIcon
     photo_plus: QIcon
     photo_question: QIcon
+    photo_scan: QIcon
     photo_search: QIcon
     photo_sensor: QIcon
     photo_sensor_2: QIcon
@@ -3544,8 +3707,10 @@ class ExtendedTablerQIcon(TablerQIcon):
     pill_off: QIcon
     pills: QIcon
     pin: QIcon
+    pin_end: QIcon
     pin_filled: QIcon
     ping_pong: QIcon
+    pin_invoke: QIcon
     pinned: QIcon
     pinned_filled: QIcon
     pinned_off: QIcon
@@ -3702,9 +3867,15 @@ class ExtendedTablerQIcon(TablerQIcon):
     razor_electric: QIcon
     receipt: QIcon
     receipt_2: QIcon
+    receipt_bitcoin: QIcon
+    receipt_dollar: QIcon
+    receipt_euro: QIcon
     receipt_off: QIcon
+    receipt_pound: QIcon
     receipt_refund: QIcon
     receipt_tax: QIcon
+    receipt_yen: QIcon
+    receipt_yuan: QIcon
     recharging: QIcon
     record_mail: QIcon
     record_mail_off: QIcon
@@ -3770,6 +3941,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     road_off: QIcon
     road_sign: QIcon
     robot: QIcon
+    robot_face: QIcon
     robot_off: QIcon
     rocket: QIcon
     rocket_off: QIcon
@@ -3797,9 +3969,16 @@ class ExtendedTablerQIcon(TablerQIcon):
     rotate_rectangle: QIcon
     route: QIcon
     route_2: QIcon
+    route_alt_left: QIcon
+    route_alt_right: QIcon
     route_off: QIcon
     router: QIcon
     router_off: QIcon
+    route_scan: QIcon
+    route_square: QIcon
+    route_square_2: QIcon
+    route_x: QIcon
+    route_x_2: QIcon
     row_insert_bottom: QIcon
     row_insert_top: QIcon
     row_remove: QIcon
@@ -3813,11 +3992,13 @@ class ExtendedTablerQIcon(TablerQIcon):
     ruler_measure: QIcon
     ruler_off: QIcon
     run: QIcon
+    rv_truck: QIcon
     sailboat: QIcon
     sailboat_2: QIcon
     sailboat_off: QIcon
     salad: QIcon
     salt: QIcon
+    sandbox: QIcon
     satellite: QIcon
     satellite_off: QIcon
     sausage: QIcon
@@ -3846,6 +4027,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     script_minus: QIcon
     script_plus: QIcon
     script_x: QIcon
+    scuba_diving: QIcon
     scuba_mask: QIcon
     scuba_mask_off: QIcon
     sdk: QIcon
@@ -3859,6 +4041,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     select_all: QIcon
     selector: QIcon
     send: QIcon
+    send_2: QIcon
     send_off: QIcon
     seo: QIcon
     separator: QIcon
@@ -3977,6 +4160,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     shopping_cart_up: QIcon
     shopping_cart_x: QIcon
     shovel: QIcon
+    shovel_pitchforks: QIcon
     shredder: QIcon
     signal_2g: QIcon
     signal_3g: QIcon
@@ -4000,6 +4184,8 @@ class ExtendedTablerQIcon(TablerQIcon):
     skateboard: QIcon
     skateboarding: QIcon
     skateboard_off: QIcon
+    skew_x: QIcon
+    skew_y: QIcon
     skull: QIcon
     slash: QIcon
     slashes: QIcon
@@ -4010,6 +4196,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     smart_home_off: QIcon
     smoking: QIcon
     smoking_no: QIcon
+    snowboarding: QIcon
     snowflake: QIcon
     snowflake_off: QIcon
     snowman: QIcon
@@ -4019,6 +4206,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     sock: QIcon
     sofa: QIcon
     sofa_off: QIcon
+    solar_electricity: QIcon
     solar_panel: QIcon
     solar_panel_2: QIcon
     sort_0_9: QIcon
@@ -4262,6 +4450,11 @@ class ExtendedTablerQIcon(TablerQIcon):
     stack: QIcon
     stack_2: QIcon
     stack_3: QIcon
+    stack_back: QIcon
+    stack_backward: QIcon
+    stack_forward: QIcon
+    stack_front: QIcon
+    stack_middle: QIcon
     stack_pop: QIcon
     stack_push: QIcon
     stairs: QIcon
@@ -4285,6 +4478,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     stethoscope: QIcon
     stethoscope_off: QIcon
     sticker: QIcon
+    sticker_2: QIcon
     storm: QIcon
     storm_off: QIcon
     stretching: QIcon
@@ -4300,6 +4494,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     sum: QIcon
     sum_off: QIcon
     sun: QIcon
+    sun_electricity: QIcon
     sun_filled: QIcon
     sunglasses: QIcon
     sun_high: QIcon
@@ -4314,6 +4509,10 @@ class ExtendedTablerQIcon(TablerQIcon):
     svg: QIcon
     swimming: QIcon
     swipe: QIcon
+    swipe_down: QIcon
+    swipe_left: QIcon
+    swipe_right: QIcon
+    swipe_up: QIcon
     switch: QIcon
     switch_2: QIcon
     switch_3: QIcon
@@ -4375,11 +4574,13 @@ class ExtendedTablerQIcon(TablerQIcon):
     text_decrease: QIcon
     text_direction_ltr: QIcon
     text_direction_rtl: QIcon
+    text_grammar: QIcon
     text_increase: QIcon
     text_orientation: QIcon
     text_plus: QIcon
     text_recognition: QIcon
     text_resize: QIcon
+    text_scan_2: QIcon
     text_size: QIcon
     text_spellcheck: QIcon
     texture: QIcon
@@ -4412,6 +4613,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     timeline: QIcon
     timeline_event: QIcon
     timeline_event_exclamation: QIcon
+    timeline_event_filled: QIcon
     timeline_event_minus: QIcon
     timeline_event_plus: QIcon
     timeline_event_text: QIcon
@@ -4427,6 +4629,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     tools_kitchen: QIcon
     tools_kitchen_2: QIcon
     tools_kitchen_2_off: QIcon
+    tools_kitchen_3: QIcon
     tools_kitchen_off: QIcon
     tools_off: QIcon
     tooltip: QIcon
@@ -4456,6 +4659,12 @@ class ExtendedTablerQIcon(TablerQIcon):
     traffic_lights: QIcon
     traffic_lights_off: QIcon
     train: QIcon
+    transaction_bitcoin: QIcon
+    transaction_dollar: QIcon
+    transaction_euro: QIcon
+    transaction_pound: QIcon
+    transaction_yen: QIcon
+    transaction_yuan: QIcon
     transfer: QIcon
     transfer_in: QIcon
     transfer_out: QIcon
@@ -4513,6 +4722,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     umbrella_filled: QIcon
     umbrella_off: QIcon
     underline: QIcon
+    universe: QIcon
     unlink: QIcon
     upload: QIcon
     urgent: QIcon
@@ -4528,6 +4738,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     user_down: QIcon
     user_edit: QIcon
     user_exclamation: QIcon
+    user_filled: QIcon
     user_heart: QIcon
     user_hexagon: QIcon
     user_minus: QIcon
@@ -4538,6 +4749,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     user_plus: QIcon
     user_question: QIcon
     users: QIcon
+    user_scan: QIcon
     user_search: QIcon
     users_group: QIcon
     user_share: QIcon
@@ -4638,6 +4850,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     wash_tumble_off: QIcon
     waterpolo: QIcon
     wave_saw_tool: QIcon
+    waves_electricity: QIcon
     wave_sine: QIcon
     wave_square: QIcon
     webhook: QIcon
@@ -4653,6 +4866,7 @@ class ExtendedTablerQIcon(TablerQIcon):
     wifi_2: QIcon
     wifi_off: QIcon
     wind: QIcon
+    wind_electricity: QIcon
     windmill: QIcon
     windmill_filled: QIcon
     windmill_off: QIcon
@@ -4740,5 +4954,6 @@ class ExtendedTablerQIcon(TablerQIcon):
     zoom_question: QIcon
     zoom_replace: QIcon
     zoom_reset: QIcon
+    zoom_scan: QIcon
     zzz: QIcon
     zzz_off: QIcon

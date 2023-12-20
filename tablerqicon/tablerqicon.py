@@ -1,4 +1,4 @@
-__version__ = '0.2.2'
+__version__ = '0.2.3'
 
 # Standard Library Imports
 # ------------------------
@@ -26,8 +26,8 @@ API_NAMES = {
     'pyside6': 'PySide6',
 }
 
-# Check for the QT_API environment variable
-API = os.environ.get('QT_API', '').lower()
+# Assign API to QT_API or, if it's not set or empty, to QT_PREFERRED_BINDING
+API = (os.environ.get('QT_API', '') or os.environ.get('QT_PREFERRED_BINDING', '')).lower()
 
 
 def use_backend(lib_name: Optional[str] = None):
@@ -35,11 +35,11 @@ def use_backend(lib_name: Optional[str] = None):
 
     This function attempts to import QtCore, QtGui, QtWidgets, and QtSvg from the specified
     library. If no library is specified, it will try to import the libraries based on
-    the QT_API environment variable or default order.
+    the QT_API environment variable (or QT_PREFERRED_BINDING as a fallback) or default order.
 
     Args:
         lib_name (str, optional): The preferred Qt library. If not provided, the function defaults to the
-            value from QT_API or a default order.
+            value from QT_API or QT_PREFERRED_BINDING or a default order.
     """
     global QtCore, QtGui, QtWidgets, QtSvg
 
